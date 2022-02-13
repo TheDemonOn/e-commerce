@@ -1,5 +1,28 @@
 .productCard {
-	/* display: inline-block; */
-	width: 33.333%;
-	/* vertical-align: top; */
+	width: 25%;
+	border: solid;
+	border-color: #ebebeb;
+	border-width: 0.1px;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+
+	margin: 1rem 0;
+}
+
+/* .productCard figure {
+	text-align: center;
+} */
+
+.ImgContainer {
+	max-height: 15rem;
+	overflow: hidden;
+}
+
+.ImgSize {
+	/* float: left; */
+	width: 100%;
+	height: auto;
+	/* object-fit: cover; */
+	/* border: solid; */
 }

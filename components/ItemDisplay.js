@@ -9,9 +9,12 @@ export default function ItemDisplay({ products }) {
 			{products.map((product) => (
 				<div className={styles.productCard}>
 					<figure>
-						<img src={product.image}></img>
-						<figcaption>A thing!</figcaption>
-						<h2>{product.price}</h2>
+						<div className={styles.ImgContainer}>
+							<img className={styles.ImgSize} src={product.image}></img>
+						</div>
+
+						<figcaption>{product.title}</figcaption>
+						<h2>${product.price}</h2>
 					</figure>
 				</div>
 			))}
