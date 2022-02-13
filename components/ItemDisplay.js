@@ -11,6 +11,7 @@ export default function ItemDisplay({ products }) {
 					<figure>
 						<img src={product.image}></img>
 						<figcaption>A thing!</figcaption>
+						<h2>{product.price}</h2>
 					</figure>
 				</div>
 			))}

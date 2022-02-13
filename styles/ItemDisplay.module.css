@@ -1,4 +1,5 @@
 .productCard {
 	/* display: inline-block; */
-	/* width: 33.333%; */
+	width: 33.333%;
+	/* vertical-align: top; */
 }
