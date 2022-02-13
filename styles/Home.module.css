@@ -1,0 +1,38 @@
+.sortNav {
+	/* border: solid; */
+	position: absolute;
+	/* display: inline-flex; */
+	/* position: sticky; */
+	right: 4rem;
+	/* top: 20rem; */
+}
+
+.sideNav {
+	/* border: solid; */
+	position: -webkit-sticky;
+	position: sticky;
+	top: 4rem;
+	width: 260px;
+	/* height: 50vh; */
+	background-color: bisque;
+	flex-shrink: 0;
+}
+
+.wallHeader {
+	/* border: solid; */
+	position: -webkit-sticky;
+	position: sticky;
+	display: flex;
+	top: 0;
+	align-items: center;
+}
+
+.main {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.bodyContainer {
+	display: flex;
+	border: solid;
+}
