@@ -27,6 +27,10 @@ button {
 	text-decoration: none;
 }
 
+button:focus-visible {
+	outline: 3.5px solid darkorange;
+}
+
 figcaption {
 	/* border: solid; */
 	/* text-align: center; */

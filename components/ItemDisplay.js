@@ -4,24 +4,50 @@ import styles from '../styles/ItemDisplay.module.css'
 export default function ItemDisplay({ products, display, sort }) {
 	const [productDisplay, setProductDisplay] = useState(products)
 
-	const sortLowToHigh = () => {
-		// sort
-		let tempProducts = products
-		// console.log(tempProducts)
+	const sortTopReview = () => {
+		let tempProducts = [...productDisplay]
 		tempProducts.sort((a, b) => {
-			return a.price - b.price
+			return a.rating.rate - b.rating.rate
 		})
-		// console.log(tempProducts)
 		setProductDisplay(tempProducts)
 	}
 
-	useLayoutEffect(() => {
-		if (sort === 'sortLowestPrice') {
-			// sort function
-			console.log('hi')
-			sortLowToHigh()
-		} else if (sort === 'sortHighestPrice') {
-			//sort function
+	const sortLowToHigh = () => {
+		let tempProducts = [...productDisplay]
+		tempProducts.sort((a, b) => {
+			return a.price - b.price
+		})
+		setProductDisplay(tempProducts)
+	}
+
+	const sortHighToLow = () => {
+		let tempProducts = [...productDisplay]
+		tempProducts.sort((a, b) => {
+			return b.price - a.price
+		})
+		setProductDisplay(tempProducts)
+	}
+
+	const sortFeatured = () => {
+		setProductDisplay(products)
+	}
+
+	useEffect(() => {
+		switch (sort) {
+			case 'sortTopReview':
+				sortTopReview()
+				break
+			case 'sortLowestPrice':
+				sortLowToHigh()
+				break
+			case 'sortHighestPrice':
+				sortHighToLow()
+				break
+
+			default:
+				// Original sortFeatured
+				sortFeatured()
+				break
 		}
 	}, [sort])
 
@@ -30,7 +56,7 @@ export default function ItemDisplay({ products, display, sort }) {
 			{/* Container for entire product display */}
 
 			{productDisplay.map((product) => (
-				<div className={styles.productCard}>
+				<div className={styles.productCard} key={product.id}>
 					<figure>
 						<div className={styles.ImgContainer}>
 							<img className={styles.ImgSize} src={product.image}></img>
