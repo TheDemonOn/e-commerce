@@ -17,6 +17,7 @@
 	/* background-color: bisque; */
 	flex-shrink: 0;
 	padding-left: 2rem;
+	margin-top: 2rem;
 }
 
 .wallHeader {
@@ -33,6 +34,7 @@
 .main {
 	display: flex;
 	flex-wrap: wrap;
+
 	padding: 0 2rem;
 }
 
@@ -44,4 +46,34 @@
 .sideNav fieldset {
 	display: flex;
 	flex-direction: column;
+}
+
+.catagories {
+	display: flex;
+	flex-direction: column;
+	padding-left: 1rem;
+	margin-bottom: 1rem;
+}
+
+.topNav {
+	display: flex;
+	justify-content: center;
+
+	/* border: solid; */
+	/* border-width: 2px; */
+	border-bottom: 1px solid rgba(34, 34, 34, 0.15);
+}
+
+.topNav a {
+	margin: 1rem;
+	cursor: pointer;
+}
+
+.dropdownOpen {
+	position: absolute;
+	border: solid;
+}
+
+.dropdownClosed {
+	display: none;
 }
