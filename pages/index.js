@@ -26,40 +26,22 @@ export default function Home({ products }) {
 		setSortDropStatus('false')
 		setSortDropDownClass(styles.dropdownClosed)
 	}
-
-	const menuBlurHandle = (e) => {
-		// The Following implementation of detecting clicks outside the menu fails when the address bar is clicked, then the page itself
-		// const currentTarget = e.currentTarget
-		// console.log(currentTarget, document.activeElement)
-		// requestAnimationFrame(() => {
-		// 	if (!currentTarget.contains(document.activeElement)) {
-		// 		closeSortMenu()
-		// 	}
-		// })
+	const openSortMenu = () => {
+		setSortDropStatus('true')
+		setSortDropDownClass(styles.dropdownOpen)
 	}
 
 	// Accessibility State
 	const [sortDropStatus, setSortDropStatus] = useState('false')
 	const [sortDropChecks, setSortDropChecks] = useState(['true', 'false', 'false', 'false'])
 
-	// State to control menu outside clicking closing the sort menu
-	const [dropDownDisplay, setDropDownDisplay] = useState()
-	const closeSortMenuAutomatically = ({ dropdownDisplay, menu }) => {
-		const handleDropdownClose = useCallback(
-			(e) => {
-				!menu.current.contains(e.target)
-			},
-			[menu]
-		)
-	}
-
-	async function sortDropDownFunc(e) {
+	function sortDropDownFunc(e) {
 		// This statement allows clicks, Enter, and Space to execute
 		if (typeof e.code === 'undefined' || (e.code && (e.code === 'Enter' || e.code === 'Space'))) {
 			// Toggles value
 			if (sortDropStatus === 'false') {
-				setSortDropStatus('true')
-				setSortDropDownClass(styles.dropdownOpen)
+				openSortMenu()
+				// When the menu is open this will focus on to the current active selection
 				let a = document.getElementById(selectedSort)
 				setTimeout(() => {
 					a.focus()
@@ -69,6 +51,24 @@ export default function Home({ products }) {
 			}
 		}
 	}
+
+	const handleDropdownClose = (e) => {
+		let menu = document.getElementById('sortOptions')
+		if (typeof menu !== 'undefined') {
+			if (!menu.contains(e.target)) {
+				closeSortMenu()
+			}
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener('click', handleDropdownClose)
+		// window.addEventListener('focusin', handleDropdownClose)
+		return () => {
+			window.removeEventListener('click', handleDropdownClose)
+			// window.removeEventListener('focusin', handleDropdownClose)
+		}
+	}, [])
 
 	const sortDropSelect = (e) => {
 		// This statement allows clicks, Enter, and Space to execute
@@ -160,7 +160,11 @@ export default function Home({ products }) {
 					{/* Sort By Button */}
 					<button
 						id="dropDownButton"
-						onClick={sortDropDownFunc}
+						onClick={(e) => {
+							// This stopPropagation is necessary so that THIS current click does not trigger the menu to close
+							e.stopPropagation()
+							sortDropDownFunc(e)
+						}}
 						aria-expanded={sortDropStatus}
 						aria-label="Sort By"
 						role="listbox"
@@ -175,7 +179,6 @@ export default function Home({ products }) {
 						aria-labelledby="dropDownButton"
 						role="menu"
 						className={sortDropDownClass}
-						// onBlur={menuBlurHandle}
 					>
 						{/* Drop Down */}
 						<button
@@ -290,96 +293,3 @@ export async function getStaticProps() {
 		},
 	}
 }
-
-// const CloseSortMenuAutomatically = ({ setDropDownDisplay, menu }) => {
-// 	const handleDropdownClose = useCallback(
-// 		(e) => {
-// 			!menu.current.contains(e.target) && setDropDownDisplay(false)
-// 		},
-// 		[setDropDownDisplay, menu]
-// 	)
-
-// 	useEffect(() => {
-// 		window.addEventListener('click', handleDropdownClose)
-// 		window.addEventListener('focusin', handleDropdownClose)
-
-// 		return () => {
-// 			window.removeEventListener('click', handleDropdownClose)
-// 			window.removeEventListener('focusin', handleDropdownClose)
-// 		}
-// 	}, [handleDropdownClose, menu])
-// }
-
-// const menu = useRef()
-// const [dropDownDisplay, setDropDownDisplay] = useState(false)
-
-// CloseSortMenuAutomatically({setDropDownDisplay, menu})
-
-// onClick={(e) => {
-// 	e.stopPropagation()
-// 	setDropDownDisplay((x) => !x)
-// }}
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-// const useAutoClose = ({ setIsOpen, menu }) => {
-// 	const handleClosure = React.useCallback(
-// 		(event) => !menu.current.contains(event.target) && setIsOpen(false),
-// 		[setIsOpen, menu]
-// 	)
-
-// 	React.useEffect(() => {
-// 		window.addEventListener('click', handleClosure)
-// 		window.addEventListener('focusin', handleClosure)
-
-// 		return () => {
-// 			window.removeEventListener('click', handleClosure)
-// 			window.removeEventListener('focusin', handleClosure)
-// 		}
-// 	}, [handleClosure, menu])
-// }
-
-// const Menu = (props) => {
-// 	const menu = React.useRef()
-// 	const [isOpen, setIsOpen] = React.useState(false)
-
-// 	useAutoClose({ setIsOpen, menu })
-
-// 	return (
-// 		<nav role="navigation">
-// 			<button
-// 				type="button"
-// 				id="nav-toggle"
-// 				aria-expanded={isOpen}
-// 				aria-controls="nav-content"
-// 				onClick={(event) => {
-// 					event.stopPropagation()
-// 					setIsOpen((isOpen) => !isOpen)
-// 				}}
-// 			>
-// 				Navigation
-// 			</button>
-// 			<div id="nav-content" aria-hidden={!isOpen} aria-labelledby="nav-toggle">
-// 				<ul>
-// 					<li>
-// 						<a href="#">Link 1</a>
-// 					</li>
-// 					<li>
-// 						<a href="#">Link 2</a>
-// 					</li>
-// 					<li>
-// 						<a href="#">Link 3</a>
-// 					</li>
-// 				</ul>
-// 			</div>
-// 		</nav>
-// 	)
-// }
