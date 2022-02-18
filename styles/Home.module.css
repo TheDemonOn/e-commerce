@@ -13,11 +13,16 @@
 	position: sticky;
 	top: 4rem;
 	width: 260px;
-	/* height: 50vh; */
 	/* background-color: bisque; */
 	flex-shrink: 0;
 	padding-left: 2rem;
 	margin-top: 2rem;
+}
+
+@media (max-width: 950px) {
+	.sideNav {
+		display: none;
+	}
 }
 
 .wallHeader {

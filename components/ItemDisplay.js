@@ -62,7 +62,13 @@ export default function ItemDisplay({ products, display, sort }) {
 							<img className={styles.ImgSize} src={product.image}></img>
 						</div>
 
-						<figcaption>{product.title}</figcaption>
+						<figcaption className={styles.title}>{product.title}</figcaption>
+						{/* <div
+							class="stars"
+							style="--rating: 2.3;"
+							style={{ ['--rating']: '2.3' }}
+							aria-label="Rating of this product is 2.3 out of 5."
+						></div> */}
 						<h2>${product.price}</h2>
 					</figure>
 				</div>

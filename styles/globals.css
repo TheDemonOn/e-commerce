@@ -16,6 +16,11 @@ a {
 	box-sizing: border-box;
 }
 
+h3 {
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
 header {
 	/* border: solid; */
 	height: 4rem;
@@ -37,5 +42,24 @@ figcaption {
 }
 
 figure {
-	text-align: center;
+	/* text-align: center; */
 }
+
+/* .stars {
+	--percent: calc(var(--rating) / 5 * 100%);
+	display: inline-block;
+	font-size: var(--star-size);
+	font-family: Times;
+	line-height: 1;
+}
+.stars::before {
+	content: '★★★★★';
+	letter-spacing: 3px;
+	background: linear-gradient(
+		90deg,
+		var(--star-background) var(--percent),
+		var(--star-color) var(--percent)
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+} */
