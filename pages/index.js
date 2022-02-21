@@ -6,7 +6,8 @@ import styles from '../styles/Home.module.css'
 import ItemDisplay from '../components/ItemDisplay'
 
 export default function Home({ products }) {
-	const [items, setItems] = useState('all')
+	const [items, setItems] = useState('anyPrice')
+	const [customRange, setCustomRange] = useState()
 
 	const [sortDropDownClass, setSortDropDownClass] = useState(styles.dropdownClosed)
 
@@ -132,6 +133,51 @@ export default function Home({ products }) {
 		}
 	}
 
+	const handlePriceSelection = (e) => {
+		console.log(e)
+		if (e.target.type === 'radio') {
+			// Mutate state for displaying products
+			if (e.target.id !== 'customRadio') {
+				setItems(e.target.id)
+			} else {
+				// custom radio selected
+				document.getElementById('lowInput').focus()
+			}
+		} else {
+			// Input boxes for custom
+		}
+	}
+
+	const customEnter = () => {
+		// Sanitize inputs and have default values
+		let low = parseFloat(document.getElementById('lowInput').value)
+		let high = parseFloat(document.getElementById('highInput').value)
+		console.log(low, high)
+
+		if (low !== NaN && high !== NaN) {
+			if (low < high) {
+				setCustomRange([low, high])
+			} else {
+				setCustomRange([high, low])
+			}
+			setItems('customRadio')
+		}
+	}
+
+	const priceSelectionKeyboard = (e) => {
+		switch (e.code) {
+			case 'Enter':
+				console.log('ENTER WAS pressed')
+				// Click button
+				customEnter()
+				break
+		}
+	}
+
+	const customSelect = () => {
+		document.getElementById('customRadio').checked = true
+	}
+
 	return (
 		<>
 			<Head>
@@ -232,7 +278,7 @@ export default function Home({ products }) {
 						<a>Electronics</a>
 					</div>
 
-					<fieldset>
+					<fieldset onChange={handlePriceSelection}>
 						<legend>Price ($)</legend>
 						<div>
 							<input type="radio" id="anyPrice" name="price" defaultChecked></input>
@@ -262,16 +308,31 @@ export default function Home({ products }) {
 							<input type="radio" id="customRadio" name="price"></input>
 							<label htmlFor="customRadio">Custom</label>
 							<div>
-								<input type="text" maxLength="5" placeholder="Low"></input>
+								<input
+									id="lowInput"
+									type="text"
+									maxLength="5"
+									placeholder="Low"
+									onClick={customSelect}
+									onKeyDown={priceSelectionKeyboard}
+								></input>
 								<p>to</p>
-								<input type="text" maxLength="5" placeholder="High"></input>
+								<input
+									id="highInput"
+									type="text"
+									maxLength="5"
+									placeholder="High"
+									onClick={customSelect}
+									onKeyDown={priceSelectionKeyboard}
+								></input>
+								{/* Hidden button which enters in the current custom values */}
 							</div>
 						</div>
 					</fieldset>
 				</nav>
 
 				<main className={styles.main}>
-					<ItemDisplay products={products} display={items} sort={selectedSort} />
+					<ItemDisplay products={products} items={items} sort={selectedSort} custom={customRange} />
 				</main>
 			</div>
 

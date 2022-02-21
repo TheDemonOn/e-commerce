@@ -1,11 +1,43 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import styles from '../styles/ItemDisplay.module.css'
 
-export default function ItemDisplay({ products, display, sort }) {
-	const [productDisplay, setProductDisplay] = useState(products)
+export default function ItemDisplay({ products, items, sort, custom }) {
+	const [product, setProduct] = useState(products)
+
+	const [productDisplay, setProductDisplay] = useState(product)
+
+	useEffect(() => {
+		// First the
+		let tempItems = [...products]
+		switch (items) {
+			case 'underTen':
+				setProduct(tempItems.filter((item) => item.price < 10))
+				break
+			case 'tenToTwentyFive':
+				setProduct(tempItems.filter((item) => item.price >= 10 && item.price <= 25))
+				break
+			case 'twentyFiveToOneHundred':
+				setProduct(tempItems.filter((item) => item.price >= 25 && item.price <= 100))
+				break
+			case 'oneHundredToFiveHundred':
+				setProduct(tempItems.filter((item) => item.price >= 100 && item.price <= 500))
+				break
+			case 'overFiveHundred':
+				setProduct(tempItems.filter((item) => item.price > 500))
+				break
+
+			case 'customRadio':
+				setProduct(tempItems.filter((item) => item.price >= custom[0] && item.price <= custom[1]))
+				break
+
+			default:
+				setProduct(products)
+				break
+		}
+	}, [items, custom])
 
 	const sortTopReview = () => {
-		let tempProducts = [...productDisplay]
+		let tempProducts = [...product]
 		tempProducts.sort((a, b) => {
 			return a.rating.rate - b.rating.rate
 		})
@@ -13,7 +45,7 @@ export default function ItemDisplay({ products, display, sort }) {
 	}
 
 	const sortLowToHigh = () => {
-		let tempProducts = [...productDisplay]
+		let tempProducts = [...product]
 		tempProducts.sort((a, b) => {
 			return a.price - b.price
 		})
@@ -21,7 +53,7 @@ export default function ItemDisplay({ products, display, sort }) {
 	}
 
 	const sortHighToLow = () => {
-		let tempProducts = [...productDisplay]
+		let tempProducts = [...product]
 		tempProducts.sort((a, b) => {
 			return b.price - a.price
 		})
@@ -29,7 +61,7 @@ export default function ItemDisplay({ products, display, sort }) {
 	}
 
 	const sortFeatured = () => {
-		setProductDisplay(products)
+		setProductDisplay(product)
 	}
 
 	useEffect(() => {
@@ -49,7 +81,7 @@ export default function ItemDisplay({ products, display, sort }) {
 				sortFeatured()
 				break
 		}
-	}, [sort])
+	}, [product, sort])
 
 	return (
 		<>
