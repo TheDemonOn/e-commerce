@@ -35,6 +35,7 @@ export default function Home({ products }) {
 	// Accessibility State
 	const [sortDropStatus, setSortDropStatus] = useState('false')
 	const [sortDropChecks, setSortDropChecks] = useState(['true', 'false', 'false', 'false'])
+	const [fullscreenFilterStatus, setFullscreenFilterStatus] = useState('false')
 
 	function sortDropDownFunc(e) {
 		// This statement allows clicks, Enter, and Space to execute
@@ -112,7 +113,9 @@ export default function Home({ products }) {
 
 		// Amazon's approach seemed to be to make no other section tabbable besides the menu? But wouldn't that not prevent tabbing taking you out of the window?
 		// If that is the case then the first way I had thought may be the solution.
-		switch (e.code) {
+		console.log(e)
+		switch (e.key) {
+			// Switched e.code to e.key for better handling of actions on laptops
 			case 'Escape':
 				closeSortMenu()
 				break
@@ -130,6 +133,25 @@ export default function Home({ products }) {
 					document.getElementById('sortHighestPrice').focus()
 				}
 				break
+			case 'ArrowDown':
+				e.preventDefault()
+				if (e.target.nextElementSibling !== null) {
+					e.target.nextElementSibling.focus()
+				}
+				break
+			case 'ArrowUp':
+				e.preventDefault()
+				if (e.target.previousElementSibling !== null) {
+					e.target.previousElementSibling.focus()
+				}
+				break
+			case 'Home':
+				e.preventDefault()
+				document.getElementById('sortFeatured').focus()
+				break
+			case 'End':
+				e.preventDefault()
+				document.getElementById('sortHighestPrice').focus()
 		}
 	}
 
@@ -139,6 +161,9 @@ export default function Home({ products }) {
 			// Mutate state for displaying products
 			if (e.target.id !== 'customRadio') {
 				setItems(e.target.id)
+				// Clear Custom Inputs
+				document.getElementById('lowInput').value = ''
+				document.getElementById('highInput').value = ''
 			} else {
 				// custom radio selected
 				document.getElementById('lowInput').focus()
@@ -195,14 +220,16 @@ export default function Home({ products }) {
 					<a>Jewelry</a>
 					<a>Electronics</a>
 				</nav>
+				<div className={styles.banner}>
+					<h3>This is where new deals would go!</h3>
+				</div>
 			</header>
 			{/* Content banner */}
-			<div></div>
+			<div className={styles.banner}></div>
 			<header className={styles.wallHeader}>
-				<h1>Stuff We Have ({products.length})</h1>
+				<h2>Stuff We Have ({products.length})</h2>
 				{/* SideNav toggle & Sort By */}
 				<nav className={styles.sortNav}>
-					<div></div>
 					{/* Sort By Button */}
 					<button
 						id="dropDownButton"
@@ -213,19 +240,13 @@ export default function Home({ products }) {
 						}}
 						aria-expanded={sortDropStatus}
 						aria-label="Sort By"
-						role="listbox"
 						aria-controls="sortOptions"
-						aria-haspopup="true"
+						aria-haspopup="listbox"
 					>
 						<span>Sort By</span>
 						<div>{/* Chevron */}</div>
 					</button>
-					<div
-						id="sortOptions"
-						aria-labelledby="dropDownButton"
-						role="menu"
-						className={sortDropDownClass}
-					>
+					<div id="sortOptions" role="listbox" className={sortDropDownClass}>
 						{/* Drop Down */}
 						<button
 							id="sortFeatured"
@@ -264,6 +285,18 @@ export default function Home({ products }) {
 							Highest Price
 						</button>
 					</div>
+					{/* Reduced Screen Width Filter Button */}
+					<button
+						id="fullscreenFilterButton"
+						aria-haspopup="menu"
+						aria-label="Filter"
+						aria-controls="fullscreenFilter"
+						aria-expanded={fullscreenFilterStatus}
+					>
+						<span>Filter</span>
+						<div>{/* Icon */}</div>
+					</button>
+					<div id="fullscreenFilter" role="menu"></div>
 				</nav>
 			</header>
 

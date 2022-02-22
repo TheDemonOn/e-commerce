@@ -63,3 +63,16 @@ figure {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 } */
+
+#fullscreenFilterButton {
+	display: none;
+}
+
+@media (max-width: 950px) {
+	#dropDownButton {
+		display: none;
+	}
+	#fullscreenFilterButton {
+		display: unset;
+	}
+}
