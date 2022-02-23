@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import styles from '../styles/ItemDisplay.module.css'
+import Image from 'next/image'
 
 export default function ItemDisplay({ products, items, sort, custom }) {
 	const [product, setProduct] = useState(products)
@@ -89,20 +90,26 @@ export default function ItemDisplay({ products, items, sort, custom }) {
 
 			{productDisplay.map((product) => (
 				<div className={styles.productCard} key={product.id}>
-					<figure>
+					<div className={styles.insideCard}>
 						<div className={styles.ImgContainer}>
-							<img className={styles.ImgSize} src={product.image}></img>
+							<Image
+								className={styles.ImgSize}
+								src={product.image}
+								layout="fill"
+								objectFit="contain"
+							></Image>
 						</div>
-
-						<figcaption className={styles.title}>{product.title}</figcaption>
-						{/* <div
+						<div className={styles.productInfo}>
+							<div className={styles.title}>{product.title}</div>
+							{/* <div
 							class="stars"
 							style="--rating: 2.3;"
 							style={{ ['--rating']: '2.3' }}
 							aria-label="Rating of this product is 2.3 out of 5."
 						></div> */}
-						<h2>${product.price}</h2>
-					</figure>
+							<h2>${product.price}</h2>
+						</div>
+					</div>
 				</div>
 			))}
 		</>
