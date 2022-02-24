@@ -28,8 +28,8 @@ header {
 }
 
 button {
-	background: none;
-	text-decoration: none;
+	all: unset;
+	cursor: pointer;
 }
 
 button:focus-visible {

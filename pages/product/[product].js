@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 
 export async function getStaticPaths() {
+	// This is the server executed function that will be used to prerender each page.
 	const response = await fetch('https://fakestoreapi.com/products')
 	const initialProducts = await response.json()
 

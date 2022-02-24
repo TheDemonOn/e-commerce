@@ -56,10 +56,11 @@
 .topNav {
 	display: flex;
 	justify-content: center;
-
-	/* border: solid; */
-	/* border-width: 2px; */
 	border-bottom: 1px solid rgba(34, 34, 34, 0.15);
+}
+
+.topNav button {
+	padding: 1rem 1rem;
 }
 
 .topNav a {

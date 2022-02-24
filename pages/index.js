@@ -251,13 +251,11 @@ export default function Home({ initialProducts }) {
 
 			<header>
 				<nav className={styles.topNav}>
-					{/* Logo Here */}
-					{/* Search Bar would be here */}
-					{/* Use Link attribute to move to new page */}
-					<a>Men</a>
-					<a>Women</a>
-					<a>Jewelry</a>
-					<a>Electronics</a>
+					<button onClick={allProducts}>All</button>
+					<button onClick={menProducts}>Men</button>
+					<button onClick={womenProducts}>Women</button>
+					<button onClick={jeweleryProducts}>Jewelry</button>
+					<button onClick={electronicsProducts}>Electronics</button>
 				</nav>
 				<div className={styles.banner}>
 					<h3>This is where new deals would go!</h3>
