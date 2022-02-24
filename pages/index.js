@@ -250,6 +250,9 @@ export default function Home({ initialProducts }) {
 			</Head>
 
 			<header>
+				<a href="#main-content" id="navSkip">
+					Skip Navigation
+				</a>
 				<nav className={styles.topNav}>
 					<button onClick={allProducts}>All</button>
 					<button onClick={menProducts}>Men</button>
@@ -404,7 +407,7 @@ export default function Home({ initialProducts }) {
 					</fieldset>
 				</nav>
 
-				<main className={styles.main}>
+				<main className={styles.main} id="main-content">
 					<ItemDisplay
 						products={products}
 						range={priceRange}

@@ -64,6 +64,23 @@ figure {
 	-webkit-text-fill-color: transparent;
 } */
 
+#navSkip {
+	position: absolute;
+	padding: 0.6em;
+	color: white;
+	transform: translateY(-120%);
+	z-index: -1;
+	left: 1em;
+	top: 0.3em;
+	transition: transform 0.3s;
+}
+#navSkip:focus-visible {
+	outline: 5px dashed darkorange;
+	transform: translateY(0);
+	z-index: 100;
+	background: black;
+}
+
 #fullscreenFilterButton {
 	display: none;
 }
