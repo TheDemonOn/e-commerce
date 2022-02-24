@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import styles from '../styles/ItemDisplay.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
-export default function ItemDisplay({ products, items, sort, custom }) {
+export default function ItemDisplay({ products, range, sort, custom }) {
 	const [product, setProduct] = useState(products)
 
 	const [productDisplay, setProductDisplay] = useState(product)
 
 	useEffect(() => {
+		setProduct([...products])
+	}, [products])
+
+	useEffect(() => {
 		// First the
 		let tempItems = [...products]
-		switch (items) {
+		switch (range) {
 			case 'underTen':
 				setProduct(tempItems.filter((item) => item.price < 10))
 				break
@@ -35,7 +40,7 @@ export default function ItemDisplay({ products, items, sort, custom }) {
 				setProduct(products)
 				break
 		}
-	}, [items, custom])
+	}, [range, custom])
 
 	const sortTopReview = () => {
 		let tempProducts = [...product]
@@ -84,32 +89,37 @@ export default function ItemDisplay({ products, items, sort, custom }) {
 		}
 	}, [product, sort])
 
+	if (productDisplay.length === 0) {
+		return <>Sorry no results.</>
+	}
+
 	return (
 		<>
 			{/* Container for entire product display */}
-
 			{productDisplay.map((product) => (
 				<div className={styles.productCard} key={product.id}>
-					<div className={styles.insideCard}>
-						<div className={styles.ImgContainer}>
-							<Image
-								className={styles.ImgSize}
-								src={product.image}
-								layout="fill"
-								objectFit="contain"
-							></Image>
-						</div>
-						<div className={styles.productInfo}>
-							<div className={styles.title}>{product.title}</div>
-							{/* <div
+					<Link href={`/product/${encodeURIComponent(product.id)}`}>
+						<div className={styles.insideCard}>
+							<div className={styles.ImgContainer}>
+								<Image
+									className={styles.ImgSize}
+									src={product.image}
+									layout="fill"
+									objectFit="contain"
+								></Image>
+							</div>
+							<div className={styles.productInfo}>
+								<div className={styles.title}>{product.title}</div>
+								{/* <div
 							class="stars"
 							style="--rating: 2.3;"
 							style={{ ['--rating']: '2.3' }}
 							aria-label="Rating of this product is 2.3 out of 5."
-						></div> */}
-							<h2>${product.price}</h2>
+							></div> */}
+								<h2>${product.price}</h2>
+							</div>
 						</div>
-					</div>
+					</Link>
 				</div>
 			))}
 		</>

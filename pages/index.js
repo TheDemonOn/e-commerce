@@ -5,9 +5,11 @@ import styles from '../styles/Home.module.css'
 
 import ItemDisplay from '../components/ItemDisplay'
 
-export default function Home({ products }) {
-	const [items, setItems] = useState('anyPrice')
+export default function Home({ initialProducts }) {
+	const [priceRange, setPriceRange] = useState('anyPrice')
 	const [customRange, setCustomRange] = useState()
+	const [products, setProducts] = useState(initialProducts)
+	const [currentProductType, setCurrentProductType] = useState('All Products')
 
 	const [sortDropDownClass, setSortDropDownClass] = useState(styles.dropdownClosed)
 
@@ -56,7 +58,7 @@ export default function Home({ products }) {
 
 	const handleDropdownClose = (e) => {
 		let menu = document.getElementById('sortOptions')
-		if (typeof menu !== 'undefined') {
+		if (typeof menu !== 'undefined' && menu !== null) {
 			if (!menu.contains(e.target)) {
 				closeSortMenu()
 			}
@@ -160,7 +162,7 @@ export default function Home({ products }) {
 		if (e.target.type === 'radio') {
 			// Mutate state for displaying products
 			if (e.target.id !== 'customRadio') {
-				setItems(e.target.id)
+				setPriceRange(e.target.id)
 				// Clear Custom Inputs
 				document.getElementById('lowInput').value = ''
 				document.getElementById('highInput').value = ''
@@ -185,7 +187,7 @@ export default function Home({ products }) {
 			} else {
 				setCustomRange([high, low])
 			}
-			setItems('customRadio')
+			setPriceRange('customRadio')
 		}
 	}
 
@@ -201,6 +203,43 @@ export default function Home({ products }) {
 
 	const customSelect = () => {
 		document.getElementById('customRadio').checked = true
+	}
+
+	const allProducts = () => {
+		setProducts(initialProducts)
+		setCurrentProductType('All Products')
+	}
+	const menProducts = () => {
+		setProducts([
+			...initialProducts.filter((product) => {
+				return product.category === "men's clothing"
+			}),
+		])
+		setCurrentProductType("Men's Clothing")
+	}
+	const womenProducts = () => {
+		setProducts([
+			...initialProducts.filter((product) => {
+				return product.category === "women's clothing"
+			}),
+		])
+		setCurrentProductType("Women's Clothing")
+	}
+	const jeweleryProducts = () => {
+		setProducts([
+			...initialProducts.filter((product) => {
+				return product.category === 'jewelery'
+			}),
+		])
+		setCurrentProductType('Jewelery')
+	}
+	const electronicsProducts = () => {
+		setProducts([
+			...initialProducts.filter((product) => {
+				return product.category === 'electronics'
+			}),
+		])
+		setCurrentProductType('Electronics')
 	}
 
 	return (
@@ -227,7 +266,9 @@ export default function Home({ products }) {
 			{/* Content banner */}
 			<div className={styles.banner}></div>
 			<header className={styles.wallHeader}>
-				<h2>Stuff We Have ({products.length})</h2>
+				<h2>
+					{currentProductType} ({products.length})
+				</h2>
 				{/* SideNav toggle & Sort By */}
 				<nav className={styles.sortNav}>
 					{/* Sort By Button */}
@@ -305,10 +346,11 @@ export default function Home({ products }) {
 				<nav className={styles.sideNav}>
 					<div className={styles.catagories}>
 						{/* Catagories */}
-						<a>Men</a>
-						<a>Women</a>
-						<a>Jewelry</a>
-						<a>Electronics</a>
+						<button onClick={allProducts}>All</button>
+						<button onClick={menProducts}>Men</button>
+						<button onClick={womenProducts}>Women</button>
+						<button onClick={jeweleryProducts}>Jewelry</button>
+						<button onClick={electronicsProducts}>Electronics</button>
 					</div>
 
 					<fieldset onChange={handlePriceSelection}>
@@ -365,13 +407,16 @@ export default function Home({ products }) {
 				</nav>
 
 				<main className={styles.main}>
-					<ItemDisplay products={products} items={items} sort={selectedSort} custom={customRange} />
+					<ItemDisplay
+						products={products}
+						range={priceRange}
+						sort={selectedSort}
+						custom={customRange}
+					/>
 				</main>
 			</div>
 
-			<footer>
-				<Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-			</footer>
+			<footer></footer>
 		</>
 	)
 }
@@ -379,11 +424,11 @@ export default function Home({ products }) {
 export async function getStaticProps() {
 	// This function will get the data that will be displayed and arranged
 	const response = await fetch('https://fakestoreapi.com/products')
-	const products = await response.json()
+	const initialProducts = await response.json()
 	// If there is an error with the api call then a custom 500 error page will display.
 	return {
 		props: {
-			products,
+			initialProducts,
 		},
 	}
 }

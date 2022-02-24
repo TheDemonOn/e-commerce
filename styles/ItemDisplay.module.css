@@ -1,6 +1,7 @@
 .productCard {
 	max-width: 25%;
 	flex-basis: 25%;
+	max-height: 19rem;
 
 	border: solid;
 	border-color: #ebebeb;
@@ -12,8 +13,11 @@
 
 .insideCard {
 	height: 100%;
-	padding: 1rem;
+	margin: 1rem;
+	margin-bottom: 2rem;
+	/* padding: 1rem; */
 	/* border: solid; */
+	cursor: pointer;
 }
 
 /* .ImgSize {
