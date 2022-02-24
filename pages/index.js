@@ -245,7 +245,7 @@ export default function Home({ initialProducts }) {
 	return (
 		<>
 			<Head>
-				<title>This Store: It's amazing!</title>
+				<title>Antonio's Store: It's amazing!</title>
 				<meta name="description" content="Fake e-commerce site" />
 			</Head>
 

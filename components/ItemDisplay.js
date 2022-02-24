@@ -98,7 +98,7 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 			{/* Container for entire product display */}
 			{productDisplay.map((product) => (
 				<div className={styles.productCard} key={product.id}>
-					<Link href={`/product/${encodeURIComponent(product.id)}`}>
+					<Link href={'/product/' + product.id}>
 						<div className={styles.insideCard}>
 							<div className={styles.ImgContainer}>
 								<Image
