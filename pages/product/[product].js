@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
+import styles from '../../styles/Product.module.css'
 
 export async function getStaticPaths() {
 	// This is the server executed function that will be used to prerender each page.
@@ -54,7 +56,23 @@ export default function Product({ product }) {
 				<title>{headTitle}</title>
 				<meta name="description" content="Fake e-commerce site" />
 			</Head>
-			<div>This product is {product.title}</div>
+
+			<main className={styles.center}>
+				<div className={styles.productDisplay}>
+					<div className={styles.imgContainer}>
+						<Image src={product.image} layout="fill" objectFit="contain"></Image>
+					</div>
+					<div className={styles.productInfo}>
+						<h3>{product.title}</h3>
+						<h2>${product.price}</h2>
+						<button>Add to cart</button>
+						<p>
+							<b>Description</b>
+						</p>
+						<p>{product.description}</p>
+					</div>
+				</div>
+			</main>
 		</>
 	)
 }
