@@ -204,10 +204,16 @@ export default function Home({ initialProducts }) {
 	const customSelect = () => {
 		document.getElementById('customRadio').checked = true
 	}
+	const resetPrice = () => {
+		document.getElementById('anyPrice').checked = true
+		document.getElementById('lowInput').value = ''
+		document.getElementById('highInput').value = ''
+	}
 
 	const allProducts = () => {
 		setProducts(initialProducts)
 		setCurrentProductType('All Products')
+		resetPrice()
 	}
 	const menProducts = () => {
 		setProducts([
@@ -216,6 +222,7 @@ export default function Home({ initialProducts }) {
 			}),
 		])
 		setCurrentProductType("Men's Clothing")
+		resetPrice()
 	}
 	const womenProducts = () => {
 		setProducts([
@@ -224,6 +231,7 @@ export default function Home({ initialProducts }) {
 			}),
 		])
 		setCurrentProductType("Women's Clothing")
+		resetPrice()
 	}
 	const jeweleryProducts = () => {
 		setProducts([
@@ -232,6 +240,7 @@ export default function Home({ initialProducts }) {
 			}),
 		])
 		setCurrentProductType('Jewelery')
+		resetPrice()
 	}
 	const electronicsProducts = () => {
 		setProducts([
@@ -240,6 +249,7 @@ export default function Home({ initialProducts }) {
 			}),
 		])
 		setCurrentProductType('Electronics')
+		resetPrice()
 	}
 
 	return (
