@@ -98,27 +98,29 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 			{/* Container for entire product display */}
 			{productDisplay.map((product) => (
 				<div className={styles.productCard} key={product.id}>
-					<Link href={'/product/' + product.id}>
-						<div className={styles.insideCard}>
-							<div className={styles.ImgContainer}>
-								<Image
-									className={styles.ImgSize}
-									src={product.image}
-									layout="fill"
-									objectFit="contain"
-								></Image>
+					<Link href={'/product/' + product.id} passHref>
+						<a>
+							<div className={styles.insideCard}>
+								<div className={styles.ImgContainer}>
+									<Image
+										className={styles.ImgSize}
+										src={product.image}
+										layout="fill"
+										objectFit="contain"
+									></Image>
+								</div>
+								<div className={styles.productInfo}>
+									<div className={styles.title}>{product.title}</div>
+									{/* <div
+									class="stars"
+									style="--rating: 2.3;"
+									style={{ ['--rating']: '2.3' }}
+									aria-label="Rating of this product is 2.3 out of 5."
+									></div> */}
+									<h2>${product.price}</h2>
+								</div>
 							</div>
-							<div className={styles.productInfo}>
-								<div className={styles.title}>{product.title}</div>
-								{/* <div
-							class="stars"
-							style="--rating: 2.3;"
-							style={{ ['--rating']: '2.3' }}
-							aria-label="Rating of this product is 2.3 out of 5."
-							></div> */}
-								<h2>${product.price}</h2>
-							</div>
-						</div>
+						</a>
 					</Link>
 				</div>
 			))}
