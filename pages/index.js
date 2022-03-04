@@ -367,31 +367,47 @@ export default function Home({ initialProducts }) {
 					<fieldset onChange={handlePriceSelection}>
 						<legend>Price ($)</legend>
 						<div>
-							<input type="radio" id="anyPrice" name="price" defaultChecked></input>
+							<input
+								type="radio"
+								id="anyPrice"
+								name="price"
+								autocomplete="off"
+								defaultChecked
+							></input>
 							<label htmlFor="anyPrice">Any price</label>
 						</div>
 						<div>
-							<input type="radio" id="underTen" name="price"></input>
+							<input type="radio" id="underTen" name="price" autocomplete="off"></input>
 							<label htmlFor="underTen">Under $10</label>
 						</div>
 						<div>
-							<input type="radio" id="tenToTwentyFive" name="price"></input>
+							<input type="radio" id="tenToTwentyFive" name="price" autocomplete="off"></input>
 							<label htmlFor="tenToTwentyFive">$10 to $25</label>
 						</div>
 						<div>
-							<input type="radio" id="twentyFiveToOneHundred" name="price"></input>
+							<input
+								type="radio"
+								id="twentyFiveToOneHundred"
+								name="price"
+								autocomplete="off"
+							></input>
 							<label htmlFor="twentyFiveToOneHundred">$25 to $100</label>
 						</div>
 						<div>
-							<input type="radio" id="oneHundredToFiveHundred" name="price"></input>
+							<input
+								type="radio"
+								id="oneHundredToFiveHundred"
+								name="price"
+								autocomplete="off"
+							></input>
 							<label htmlFor="oneHundredToFiveHundred">$100 to $500</label>
 						</div>
 						<div>
-							<input type="radio" id="overFiveHundred" name="price"></input>
+							<input type="radio" id="overFiveHundred" name="price" autocomplete="off"></input>
 							<label htmlFor="overFiveHundred">Over $500</label>
 						</div>
 						<div>
-							<input type="radio" id="customRadio" name="price"></input>
+							<input type="radio" id="customRadio" name="price" autocomplete="off"></input>
 							<label htmlFor="customRadio">Custom</label>
 							<div>
 								<input
@@ -401,6 +417,7 @@ export default function Home({ initialProducts }) {
 									placeholder="Low"
 									onClick={customSelect}
 									onKeyDown={priceSelectionKeyboard}
+									autocomplete="off"
 								></input>
 								<p>to</p>
 								<input
@@ -410,6 +427,7 @@ export default function Home({ initialProducts }) {
 									placeholder="High"
 									onClick={customSelect}
 									onKeyDown={priceSelectionKeyboard}
+									autocomplete="off"
 								></input>
 								{/* Hidden button which enters in the current custom values */}
 							</div>
