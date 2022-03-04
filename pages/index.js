@@ -211,7 +211,7 @@ export default function Home({ initialProducts }) {
 	}
 
 	const allProducts = () => {
-		setProducts(initialProducts)
+		setProducts([...initialProducts])
 		setCurrentProductType('All Products')
 		resetPrice()
 	}

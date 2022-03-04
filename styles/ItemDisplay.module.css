@@ -20,8 +20,10 @@
 	/* cursor: pointer; */
 }
 
-/* .ImgSize {
-} */
+.productInfo h2 {
+	margin: 0;
+	font-size: larger;
+}
 
 .ImgContainer {
 	/* border: solid; */
