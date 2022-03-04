@@ -13,16 +13,14 @@ export default function Home({ initialProducts }) {
 
 	const [sortDropDownClass, setSortDropDownClass] = useState(styles.dropdownClosed)
 
-	// This stored sort option is retrieved when ran on the client if one has been selected before
-	let storedSortOption
-	if (typeof window !== 'undefined') {
-		storedSortOption = localStorage.getItem('sortOption')
-	}
-	// If there is no stored value use the default
-	const [selectedSort, setSelectedSort] = useState(storedSortOption || 'sortFeatured')
+	// The selectedSort will default to sortFeatured, unless there is a current value for sortOption in localStorage.
+	// This takes place within the ItemDisplay Component.
+	const [selectedSort, setSelectedSort] = useState('')
 
 	useEffect(() => {
-		localStorage.setItem('sortOption', selectedSort)
+		if (selectedSort) {
+			localStorage.setItem('sortOption', selectedSort)
+		}
 	}, [selectedSort])
 
 	const closeSortMenu = () => {
@@ -46,10 +44,12 @@ export default function Home({ initialProducts }) {
 			if (sortDropStatus === 'false') {
 				openSortMenu()
 				// When the menu is open this will focus on to the current active selection
-				let a = document.getElementById(selectedSort)
-				setTimeout(() => {
-					a.focus()
-				}, 1)
+				if (selectedSort) {
+					let a = document.getElementById(selectedSort)
+					setTimeout(() => {
+						a.focus()
+					}, 1)
+				}
 			} else {
 				closeSortMenu()
 			}
@@ -371,17 +371,17 @@ export default function Home({ initialProducts }) {
 								type="radio"
 								id="anyPrice"
 								name="price"
-								autocomplete="off"
+								autoComplete="off"
 								defaultChecked
 							></input>
 							<label htmlFor="anyPrice">Any price</label>
 						</div>
 						<div>
-							<input type="radio" id="underTen" name="price" autocomplete="off"></input>
+							<input type="radio" id="underTen" name="price" autoComplete="off"></input>
 							<label htmlFor="underTen">Under $10</label>
 						</div>
 						<div>
-							<input type="radio" id="tenToTwentyFive" name="price" autocomplete="off"></input>
+							<input type="radio" id="tenToTwentyFive" name="price" autoComplete="off"></input>
 							<label htmlFor="tenToTwentyFive">$10 to $25</label>
 						</div>
 						<div>
@@ -389,7 +389,7 @@ export default function Home({ initialProducts }) {
 								type="radio"
 								id="twentyFiveToOneHundred"
 								name="price"
-								autocomplete="off"
+								autoComplete="off"
 							></input>
 							<label htmlFor="twentyFiveToOneHundred">$25 to $100</label>
 						</div>
@@ -398,16 +398,16 @@ export default function Home({ initialProducts }) {
 								type="radio"
 								id="oneHundredToFiveHundred"
 								name="price"
-								autocomplete="off"
+								autoComplete="off"
 							></input>
 							<label htmlFor="oneHundredToFiveHundred">$100 to $500</label>
 						</div>
 						<div>
-							<input type="radio" id="overFiveHundred" name="price" autocomplete="off"></input>
+							<input type="radio" id="overFiveHundred" name="price" autoComplete="off"></input>
 							<label htmlFor="overFiveHundred">Over $500</label>
 						</div>
 						<div>
-							<input type="radio" id="customRadio" name="price" autocomplete="off"></input>
+							<input type="radio" id="customRadio" name="price" autoComplete="off"></input>
 							<label htmlFor="customRadio">Custom</label>
 							<div>
 								<input
@@ -417,7 +417,7 @@ export default function Home({ initialProducts }) {
 									placeholder="Low"
 									onClick={customSelect}
 									onKeyDown={priceSelectionKeyboard}
-									autocomplete="off"
+									autoComplete="off"
 								></input>
 								<p>to</p>
 								<input
@@ -427,7 +427,7 @@ export default function Home({ initialProducts }) {
 									placeholder="High"
 									onClick={customSelect}
 									onKeyDown={priceSelectionKeyboard}
-									autocomplete="off"
+									autoComplete="off"
 								></input>
 								{/* Hidden button which enters in the current custom values */}
 							</div>

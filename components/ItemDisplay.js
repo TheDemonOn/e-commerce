@@ -4,6 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ItemDisplay({ products, range, sort, custom }) {
+	// For the initial load, in order to prevent the original default sort of "sortFeatured", then rewriting it to be whatever is currently selected, a check is placed to ensure that the items do not display until a sort option has been properly selected from either localStorage or otherwise.
+	const [initialLoad, setInitialLoad] = useState(0)
+
 	const [product, setProduct] = useState(products)
 
 	const [productDisplay, setProductDisplay] = useState(product)
@@ -48,6 +51,7 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 			return b.rating.rate - a.rating.rate
 		})
 		setProductDisplay(tempProducts)
+		setInitialLoad(1)
 	}
 
 	const sortLowToHigh = () => {
@@ -56,6 +60,7 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 			return a.price - b.price
 		})
 		setProductDisplay(tempProducts)
+		setInitialLoad(1)
 	}
 
 	const sortHighToLow = () => {
@@ -64,28 +69,51 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 			return b.price - a.price
 		})
 		setProductDisplay(tempProducts)
+		setInitialLoad(1)
 	}
 
 	const sortFeatured = () => {
 		setProductDisplay(product)
+		setInitialLoad(1)
 	}
 
 	useEffect(() => {
-		switch (sort) {
-			case 'sortTopReview':
-				sortTopReview()
-				break
-			case 'sortLowestPrice':
-				sortLowToHigh()
-				break
-			case 'sortHighestPrice':
-				sortHighToLow()
-				break
-
-			default:
-				// Original sortFeatured
-				sortFeatured()
-				break
+		if (sort) {
+			// A sort option has been selected
+			switch (sort) {
+				case 'sortTopReview':
+					sortTopReview()
+					break
+				case 'sortLowestPrice':
+					sortLowToHigh()
+					break
+				case 'sortHighestPrice':
+					sortHighToLow()
+					break
+				default:
+					// Original sortFeatured
+					sortFeatured()
+					break
+			}
+		} else {
+			// There is no current sort.
+			// Attempt to retrieve the sort from localStorage, if it doesn't exist it will default to sortFeatured.
+			let local = localStorage.getItem('sortOption')
+			switch (local) {
+				case 'sortTopReview':
+					sortTopReview()
+					break
+				case 'sortLowestPrice':
+					sortLowToHigh()
+					break
+				case 'sortHighestPrice':
+					sortHighToLow()
+					break
+				default:
+					// Original sortFeatured
+					sortFeatured()
+					break
+			}
 		}
 	}, [product, sort])
 
@@ -179,32 +207,37 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 		return stars
 	}
 
-	return (
-		<>
-			{/* Container for entire product display */}
-			{productDisplay.map((product) => (
-				<div className={styles.productCard} key={product.id}>
-					<Link href={'/product/' + product.id} passHref>
-						<a>
-							<div className={styles.insideCard}>
-								<div className={styles.ImgContainer}>
-									<Image
-										className={styles.ImgSize}
-										src={product.image}
-										layout="fill"
-										objectFit="contain"
-									></Image>
+	if (initialLoad) {
+		return (
+			<>
+				{/* Container for entire product display */}
+				{productDisplay.map((product) => (
+					<div className={styles.productCard} key={product.id}>
+						<Link href={'/product/' + product.id} passHref>
+							<a>
+								<div className={styles.insideCard}>
+									<div className={styles.ImgContainer}>
+										<Image
+											className={styles.ImgSize}
+											src={product.image}
+											layout="fill"
+											objectFit="contain"
+										></Image>
+									</div>
+									<div className={styles.productInfo}>
+										<div className={styles.title}>{product.title}</div>
+										<RatingDisplay rating={product.rating.rate} />
+										{/*  */}({product.rating.count})<h2>${product.price}</h2>
+									</div>
 								</div>
-								<div className={styles.productInfo}>
-									<div className={styles.title}>{product.title}</div>
-									<RatingDisplay rating={product.rating.rate} />
-									{/*  */}({product.rating.count})<h2>${product.price}</h2>
-								</div>
-							</div>
-						</a>
-					</Link>
-				</div>
-			))}
-		</>
-	)
+							</a>
+						</Link>
+					</div>
+				))}
+			</>
+		)
+	} else {
+		// Return nothing if no sort function has operated
+		return <></>
+	}
 }
