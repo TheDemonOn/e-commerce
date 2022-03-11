@@ -84,6 +84,97 @@
 	justify-content: center;
 }
 
+.filterOpen {
+	display: unset;
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background-color: white;
+	opacity: 100%;
+	transform: translateY(0%);
+
+	animation-name: openingFilter;
+	animation-duration: 200ms;
+}
+
+@keyframes openingFilter {
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0%);
+	}
+}
+
+.filterClosing {
+	display: unset;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background-color: aqua;
+	opacity: 50%;
+	transform: translateY(100%);
+
+	animation-name: closingFilter;
+	animation-duration: 200ms;
+}
+
+@keyframes closingFilter {
+	from {
+		transform: translateY(0%);
+		display: unset;
+	}
+	to {
+		transform: translateY(100%);
+		display: none;
+	}
+}
+
+.filterClosed {
+	display: none;
+}
+
+.openDark {
+	display: unset !important;
+
+	animation-name: darkFilter;
+	animation-duration: 200ms;
+}
+
+@keyframes darkFilter {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 0.6;
+	}
+}
+
+.closingDark {
+	display: unset !important;
+
+	animation-name: exitDarkFilter;
+	animation-duration: 200ms;
+}
+
+@keyframes exitDarkFilter {
+	from {
+		opacity: 0.6;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.closeDark {
+	display: none;
+}
+
 @media (max-width: 950px) {
 	.sideNav {
 		display: none;

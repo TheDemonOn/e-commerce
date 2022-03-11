@@ -35,7 +35,6 @@ export default function Home({ initialProducts }) {
 	// Accessibility State
 	const [sortDropStatus, setSortDropStatus] = useState('false')
 	const [sortDropChecks, setSortDropChecks] = useState(['true', 'false', 'false', 'false'])
-	const [fullscreenFilterStatus, setFullscreenFilterStatus] = useState('false')
 
 	function sortDropDownFunc(e) {
 		// This statement allows clicks, Enter, and Space to execute
@@ -59,7 +58,9 @@ export default function Home({ initialProducts }) {
 	const handleDropdownClose = (e) => {
 		let menu = document.getElementById('sortOptions')
 		if (typeof menu !== 'undefined' && menu !== null) {
+			// If the sort menu is currently open
 			if (!menu.contains(e.target)) {
+				// if the area clicked is not within the menu, close it
 				closeSortMenu()
 			}
 		}
@@ -252,6 +253,27 @@ export default function Home({ initialProducts }) {
 		resetPrice()
 	}
 
+	// Mobile State
+	const [fullscreenFilterStatus, setFullscreenFilterStatus] = useState('false')
+	const [fullFilterClass, setFullFilterClass] = useState(styles.filterClosed)
+	const [darkFilter, setDarkFilter] = useState()
+
+	const filterToggle = () => {
+		if (fullFilterClass === styles.filterClosed) {
+			setFullscreenFilterStatus('true')
+			setFullFilterClass(styles.filterOpen)
+			setDarkFilter(styles.openDark)
+		} else {
+			setFullFilterClass(styles.filterClosing)
+			setDarkFilter(styles.closingDark)
+			setTimeout(() => {
+				setFullscreenFilterStatus('closed')
+				setFullFilterClass(styles.filterClosed)
+				setDarkFilter(styles.closeDark)
+			}, 200) // This ms value is the duration of the closing animation's duration
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -340,6 +362,7 @@ export default function Home({ initialProducts }) {
 					{/* Reduced Screen Width Filter Button */}
 					<button
 						id="fullscreenFilterButton"
+						onClick={filterToggle}
 						aria-haspopup="menu"
 						aria-label="Filter"
 						aria-controls="fullscreenFilter"
@@ -348,7 +371,114 @@ export default function Home({ initialProducts }) {
 						<span>Filter</span>
 						<div>{/* Icon */}</div>
 					</button>
-					<div id="fullscreenFilter" role="menu"></div>
+
+					<div id="fullscreenFilter" className={fullFilterClass} role="menu">
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+						<div>
+							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
+							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
+							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
+							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
+							as if the waters had but newly retired from the face of the earth. CSS Demo:
+							overflow-y overflow-y: visible; overf
+						</div>
+					</div>
+					<div id="darkFilter" className={darkFilter}></div>
 				</nav>
 			</header>
 
