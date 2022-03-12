@@ -116,6 +116,8 @@ export default function Home({ initialProducts }) {
 
 		// Amazon's approach seemed to be to make no other section tabbable besides the menu? But wouldn't that not prevent tabbing taking you out of the window?
 		// If that is the case then the first way I had thought may be the solution.
+
+		// The way I have done it here could be generalized to not require manual focus
 		console.log(e)
 		switch (e.key) {
 			// Switched e.code to e.key for better handling of actions on laptops
@@ -260,17 +262,26 @@ export default function Home({ initialProducts }) {
 
 	const filterToggle = () => {
 		if (fullFilterClass === styles.filterClosed) {
+			// Open
 			setFullscreenFilterStatus('true')
 			setFullFilterClass(styles.filterOpen)
 			setDarkFilter(styles.openDark)
+			document.body.setAttribute('class', 'stopScroll')
+			setTimeout(() => {
+				// This waita 1ms before focusing to ensure the element is no longer display: none
+				document.getElementById('closeFullscreenFilter').focus()
+			}, 1)
 		} else {
+			// Closing
 			setFullFilterClass(styles.filterClosing)
 			setDarkFilter(styles.closingDark)
+			document.body.removeAttribute('class')
 			setTimeout(() => {
+				// Closed
 				setFullscreenFilterStatus('closed')
 				setFullFilterClass(styles.filterClosed)
 				setDarkFilter(styles.closeDark)
-			}, 200) // This ms value is the duration of the closing animation's duration
+			}, 200) // This ms value is set as the duration of the closing animation's duration
 		}
 	}
 
@@ -364,119 +375,138 @@ export default function Home({ initialProducts }) {
 						id="fullscreenFilterButton"
 						onClick={filterToggle}
 						aria-haspopup="menu"
-						aria-label="Filter"
+						aria-label="Filters"
 						aria-controls="fullscreenFilter"
 						aria-expanded={fullscreenFilterStatus}
 					>
-						<span>Filter</span>
+						<span>Filters</span>
 						<div>{/* Icon */}</div>
 					</button>
 
 					<div id="fullscreenFilter" className={fullFilterClass} role="menu">
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
-						<div>
-							CSS Demo: overflow-y overflow-y: visible; overflow-y: hidden; overflow-y: scroll;
-							overflow-y: auto; Michaelmas term lately over, and the Lord Chancellor sitting in
-							Lincoln's Inn Hall. Implacableichaelmas term lately over, and the Lord Chancellor
-							sitting in Lincoln's Inn Hall. Implacable November weather. As much mud in the streets
-							as if the waters had but newly retired from the face of the earth. CSS Demo:
-							overflow-y overflow-y: visible; overf
-						</div>
+						{/* Mobile Filter Screen */}
+						<button
+							id="closeFullscreenFilter"
+							className={styles.fullscreenClose}
+							onClick={filterToggle}
+						>
+							Close
+						</button>
+						<h1>Filters</h1>
+						<fieldset>
+							<legend>Sort By</legend>
+							<div>
+								<input
+									type="radio"
+									id="mobileFeatured"
+									name="sort"
+									autoComplete="off"
+									defaultChecked
+								></input>
+								<label htmlFor="mobileFeatured">Featured</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileTopReviews" name="sort" autoComplete="off"></input>
+								<label htmlFor="mobileTopReviews">Top Reviews</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileLowestPrice" name="sort" autoComplete="off"></input>
+								<label htmlFor="mobileLowestPrice">Lowest Price</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileHighestPrice" name="sort" autoComplete="off"></input>
+								<label htmlFor="mobileHighestPrice">Highest Price</label>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Price ($)</legend>
+							<div>
+								<input
+									type="radio"
+									id="mobileAnyPrice"
+									name="mobilePrice"
+									autoComplete="off"
+									defaultChecked
+								></input>
+								<label htmlFor="mobileAnyPrice">Any price</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileUnderTen"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileUnderTen">Under $10</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileTenToTwentyFive"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileTenToTwentyFive">$10 to $25</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileTwentyFiveToOneHundred"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileTwentyFiveToOneHundred">$25 to $100</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileOneHundredToFiveHundred"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileOneHundredToFiveHundred">$100 to $500</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileOverFiveHundred"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileOverFiveHundred">Over $500</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileCustomRadio"
+									name="mobilePrice"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileCustomRadio">Custom</label>
+								<div>
+									<input
+										id="lowInput"
+										type="text"
+										maxLength="5"
+										placeholder="Low"
+										onClick={customSelect}
+										onKeyDown={priceSelectionKeyboard}
+										autoComplete="off"
+									></input>
+									<p>to</p>
+									<input
+										id="highInput"
+										type="text"
+										maxLength="5"
+										placeholder="High"
+										onClick={customSelect}
+										onKeyDown={priceSelectionKeyboard}
+										autoComplete="off"
+									></input>
+									{/* Hidden button which enters in the current custom values */}
+								</div>
+							</div>
+						</fieldset>
 					</div>
 					<div id="darkFilter" className={darkFilter}></div>
 				</nav>

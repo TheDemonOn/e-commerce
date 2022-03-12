@@ -26,7 +26,6 @@ h3 {
 }
 
 header {
-	/* border: solid; */
 	height: 4rem;
 	background-color: #fff;
 }
@@ -36,37 +35,11 @@ button {
 	cursor: pointer;
 }
 
-/* button:focus-visible {
-	outline: 3.5px solid darkorange;
-} */
-
-figcaption {
-	/* border: solid; */
-	/* text-align: center; */
+.stopScroll {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
 }
-
-figure {
-	/* text-align: center; */
-}
-
-/* .stars {
-	--percent: calc(var(--rating) / 5 * 100%);
-	display: inline-block;
-	font-size: var(--star-size);
-	font-family: Times;
-	line-height: 1;
-}
-.stars::before {
-	content: '★★★★★';
-	letter-spacing: 3px;
-	background: linear-gradient(
-		90deg,
-		var(--star-background) var(--percent),
-		var(--star-color) var(--percent)
-	);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-} */
 
 #navSkip {
 	position: absolute;
@@ -90,8 +63,15 @@ figure {
 }
 
 #fullscreenFilter {
+	position: fixed;
+	overflow-y: scroll;
+	background-color: white;
 	height: 100%;
 	width: 100%;
+	opacity: 100%;
+	z-index: 10;
+	top: 0;
+	left: 0;
 }
 
 #darkFilter {
@@ -103,7 +83,6 @@ figure {
 	width: 100%;
 	z-index: 1;
 	background: black;
-	opacity: 0.6;
 }
 
 @media (max-width: 950px) {
