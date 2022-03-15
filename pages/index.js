@@ -394,6 +394,40 @@ export default function Home({ initialProducts }) {
 						</button>
 						<h1>Filters</h1>
 						<fieldset>
+							<legend>Filter By Catagory</legend>
+							<div>
+								<input
+									type="radio"
+									id="mobileAll"
+									name="catagory"
+									autoComplete="off"
+									defaultChecked
+								></input>
+								<label htmlFor="mobileAll">All</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileMen" name="catagory" autoComplete="off"></input>
+								<label htmlFor="mobileMen">Men</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileWomen" name="catagory" autoComplete="off"></input>
+								<label htmlFor="mobileWomen">Women</label>
+							</div>
+							<div>
+								<input type="radio" id="mobileJewelery" name="catagory" autoComplete="off"></input>
+								<label htmlFor="mobileJewelery">Jewelery</label>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="mobileElectronics"
+									name="catagory"
+									autoComplete="off"
+								></input>
+								<label htmlFor="mobileElectronics">Electronics</label>
+							</div>
+						</fieldset>
+						<fieldset>
 							<legend>Sort By</legend>
 							<div>
 								<input

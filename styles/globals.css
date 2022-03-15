@@ -35,6 +35,23 @@ button {
 	cursor: pointer;
 }
 
+fieldset {
+	border: unset;
+	border-bottom: 1px solid rgb(229, 229, 229);
+
+	padding-left: unset;
+	padding-bottom: 1rem;
+
+	margin: auto;
+	margin-bottom: 0.8rem;
+
+	width: 90%;
+}
+
+legend {
+	font-weight: bold;
+}
+
 .stopScroll {
 	margin: 0;
 	height: 100%;
