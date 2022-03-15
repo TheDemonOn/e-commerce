@@ -394,34 +394,34 @@ export default function Home({ initialProducts }) {
 						</button>
 						<h1>Filters</h1>
 						<fieldset>
-							<legend>Filter By Catagory</legend>
+							<legend>Filter By Category</legend>
 							<div>
 								<input
 									type="radio"
 									id="mobileAll"
-									name="catagory"
+									name="category"
 									autoComplete="off"
 									defaultChecked
 								></input>
 								<label htmlFor="mobileAll">All</label>
 							</div>
 							<div>
-								<input type="radio" id="mobileMen" name="catagory" autoComplete="off"></input>
+								<input type="radio" id="mobileMen" name="category" autoComplete="off"></input>
 								<label htmlFor="mobileMen">Men</label>
 							</div>
 							<div>
-								<input type="radio" id="mobileWomen" name="catagory" autoComplete="off"></input>
+								<input type="radio" id="mobileWomen" name="category" autoComplete="off"></input>
 								<label htmlFor="mobileWomen">Women</label>
 							</div>
 							<div>
-								<input type="radio" id="mobileJewelery" name="catagory" autoComplete="off"></input>
+								<input type="radio" id="mobileJewelery" name="category" autoComplete="off"></input>
 								<label htmlFor="mobileJewelery">Jewelery</label>
 							</div>
 							<div>
 								<input
 									type="radio"
 									id="mobileElectronics"
-									name="catagory"
+									name="category"
 									autoComplete="off"
 								></input>
 								<label htmlFor="mobileElectronics">Electronics</label>
@@ -452,7 +452,7 @@ export default function Home({ initialProducts }) {
 								<label htmlFor="mobileHighestPrice">Highest Price</label>
 							</div>
 						</fieldset>
-						<fieldset>
+						<fieldset className={styles.noBottomBorder}>
 							<legend>Price ($)</legend>
 							<div>
 								<input
@@ -541,6 +541,10 @@ export default function Home({ initialProducts }) {
 								</div>
 							</div>
 						</fieldset>
+						<div id="mobileButtons" className={styles.mobileBottomButtons}>
+							<button className={styles.mobileCancelButton}>Cancel</button>
+							<button className={styles.mobileApplyButton}>Apply</button>
+						</div>
 					</div>
 					<div id="darkFilter" className={darkFilter}></div>
 				</nav>
