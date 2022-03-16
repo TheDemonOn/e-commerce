@@ -43,7 +43,7 @@ export default function ItemDisplay({ products, range, sort, custom }) {
 				setProduct(products)
 				break
 		}
-	}, [range, custom])
+	}, [range, custom, products, sort])
 
 	const sortTopReview = () => {
 		let tempProducts = [...product]

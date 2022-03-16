@@ -182,9 +182,8 @@ export default function Home({ initialProducts }) {
 		// Sanitize inputs and have default values
 		let low = parseFloat(document.getElementById('lowInput').value)
 		let high = parseFloat(document.getElementById('highInput').value)
-		console.log(low, high)
 
-		if (low !== NaN && high !== NaN) {
+		if (!Number.isNaN(low) && !Number.isNaN(high)) {
 			if (low < high) {
 				setCustomRange([low, high])
 			} else {
@@ -282,6 +281,122 @@ export default function Home({ initialProducts }) {
 				setFullFilterClass(styles.filterClosed)
 				setDarkFilter(styles.closeDark)
 			}, 200) // This ms value is set as the duration of the closing animation's duration
+		}
+	}
+
+	const executeMobileFilters = () => {
+		// set the 3 values for the state by getting the id's of the checked options in the radios
+		let categories = document.getElementById('mobileCategories')
+		let categoryId = Array.from(categories.childNodes).filter(
+			(x) => x.childNodes[0].checked === true
+		)[0].childNodes[0].id
+		let sorts = document.getElementById('mobileSorts')
+		let sortId = Array.from(sorts.childNodes).filter((x) => x.childNodes[0].checked === true)[0]
+			.childNodes[0].id
+		let prices = document.getElementById('mobilePrices')
+		let priceId = Array.from(prices.childNodes).filter((x) => x.childNodes[0].checked === true)[0]
+			.childNodes[0].id
+
+		switch (categoryId) {
+			case 'mobileAll':
+				allProducts()
+				break
+			case 'mobileMen':
+				menProducts()
+				break
+			case 'mobileWomen':
+				womenProducts()
+				break
+			case 'mobileJewelery':
+				jeweleryProducts()
+				break
+			case 'mobileElectronics':
+				electronicsProducts()
+				break
+			default:
+				allProducts()
+				break
+		}
+
+		let newSortDropChecks = ['false', 'false', 'false', 'false']
+		switch (sortId) {
+			case 'mobileFeatured':
+				setSelectedSort('sortFeatured')
+				newSortDropChecks[0] = 'true'
+				break
+			case 'mobileTopReviews':
+				setSelectedSort('sortTopReview')
+				newSortDropChecks[1] = 'true'
+				break
+			case 'mobileLowestPrice':
+				setSelectedSort('sortLowestPrice')
+				newSortDropChecks[2] = 'true'
+				break
+			case 'mobileHighestPrice':
+				setSelectedSort('sortHighestPrice')
+				newSortDropChecks[3] = 'true'
+				break
+			default:
+				setSelectedSort('sortFeatured')
+				newSortDropChecks[0] = 'true'
+				break
+		}
+		setSortDropChecks(newSortDropChecks)
+
+		switch (priceId) {
+			case 'mobileAnyPrice':
+				setPriceRange('anyPrice')
+				break
+			case 'mobileUnderTen':
+				setPriceRange('underTen')
+				break
+			case 'mobileTenToTwentyFive':
+				setPriceRange('tenToTwentyFive')
+				break
+			case 'mobileTwentyFiveToOneHundred':
+				setPriceRange('twentyFiveToOneHundred')
+				break
+			case 'mobileOneHundredToFiveHundred':
+				setPriceRange('oneHundredToFiveHundred')
+				break
+			case 'mobileOverFiveHundred':
+				setPriceRange('overFiveHundred')
+				break
+			case 'mobileCustomRadio':
+				let low = parseFloat(document.getElementById('mobileLowInput').value)
+				let high = parseFloat(document.getElementById('mobileHighInput').value)
+				if (!Number.isNaN(low) && !Number.isNaN(high)) {
+					if (low < high) {
+						setCustomRange([low, high])
+					} else {
+						setCustomRange([high, low])
+					}
+					setPriceRange('customRadio')
+				} else {
+					setPriceRange('anyPrice')
+				}
+				break
+			default:
+				setPriceRange('anyPrice')
+				break
+		}
+
+		filterToggle()
+	}
+
+	const customMobileSelect = () => {
+		document.getElementById('mobileCustomRadio').checked = true
+	}
+
+	const handleMobilePrice = (e) => {
+		console.log(e)
+		if (
+			e.target.id !== 'mobileCustomRadio' &&
+			e.target.id !== 'mobileLowInput' &&
+			e.target.id !== 'mobileHighInput'
+		) {
+			document.getElementById('mobileLowInput').value = ''
+			document.getElementById('mobileHighInput').value = ''
 		}
 	}
 
@@ -393,7 +508,7 @@ export default function Home({ initialProducts }) {
 							Close
 						</button>
 						<h1>Filters</h1>
-						<fieldset>
+						<fieldset id="mobileCategories">
 							<legend>Filter By Category</legend>
 							<div>
 								<input
@@ -427,7 +542,7 @@ export default function Home({ initialProducts }) {
 								<label htmlFor="mobileElectronics">Electronics</label>
 							</div>
 						</fieldset>
-						<fieldset>
+						<fieldset id="mobileSorts">
 							<legend>Sort By</legend>
 							<div>
 								<input
@@ -452,7 +567,11 @@ export default function Home({ initialProducts }) {
 								<label htmlFor="mobileHighestPrice">Highest Price</label>
 							</div>
 						</fieldset>
-						<fieldset className={styles.noBottomBorder}>
+						<fieldset
+							id="mobilePrices"
+							className={styles.noBottomBorder}
+							onChange={handleMobilePrice}
+						>
 							<legend>Price ($)</legend>
 							<div>
 								<input
@@ -519,22 +638,22 @@ export default function Home({ initialProducts }) {
 								<label htmlFor="mobileCustomRadio">Custom</label>
 								<div>
 									<input
-										id="lowInput"
+										id="mobileLowInput"
 										type="text"
 										maxLength="5"
 										placeholder="Low"
-										onClick={customSelect}
-										onKeyDown={priceSelectionKeyboard}
+										onClick={customMobileSelect}
+										onInput={customMobileSelect}
 										autoComplete="off"
 									></input>
 									<p>to</p>
 									<input
-										id="highInput"
+										id="mobileHighInput"
 										type="text"
 										maxLength="5"
 										placeholder="High"
-										onClick={customSelect}
-										onKeyDown={priceSelectionKeyboard}
+										onClick={customMobileSelect}
+										onInput={customMobileSelect}
 										autoComplete="off"
 									></input>
 									{/* Hidden button which enters in the current custom values */}
@@ -542,8 +661,12 @@ export default function Home({ initialProducts }) {
 							</div>
 						</fieldset>
 						<div id="mobileButtons" className={styles.mobileBottomButtons}>
-							<button className={styles.mobileCancelButton}>Cancel</button>
-							<button className={styles.mobileApplyButton}>Apply</button>
+							<button className={styles.mobileCancelButton} onClick={filterToggle}>
+								Cancel
+							</button>
+							<button className={styles.mobileApplyButton} onClick={executeMobileFilters}>
+								Apply
+							</button>
 						</div>
 					</div>
 					<div id="darkFilter" className={darkFilter}></div>
@@ -614,6 +737,7 @@ export default function Home({ initialProducts }) {
 									maxLength="5"
 									placeholder="Low"
 									onClick={customSelect}
+									onInput={customSelect}
 									onKeyDown={priceSelectionKeyboard}
 									autoComplete="off"
 								></input>
@@ -624,6 +748,7 @@ export default function Home({ initialProducts }) {
 									maxLength="5"
 									placeholder="High"
 									onClick={customSelect}
+									onInput={customSelect}
 									onKeyDown={priceSelectionKeyboard}
 									autoComplete="off"
 								></input>
