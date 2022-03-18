@@ -6,13 +6,15 @@
 .backNav {
 	position: relative;
 	width: fit-content;
-	margin-top: 1rem;
+	margin: 1rem 0;
 	left: 10rem;
 }
 
 .productDisplay {
 	display: flex;
-	width: 80vw;
+	justify-content: space-evenly;
+	min-height: 80vh;
+	width: 85vw;
 }
 
 .imgContainer {
@@ -26,8 +28,7 @@
 .productInfo {
 	position: inherit;
 	width: 33vw;
-	margin-left: 3rem;
-	margin-top: 2rem;
+	/* margin-left: 3rem; */
 }
 
 .banner {
@@ -48,12 +49,13 @@
 	margin: 1rem 1%;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
 	.productDisplay {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		width: 80vw;
+		height: unset;
 		margin-top: unset;
 	}
 
@@ -69,11 +71,9 @@
 		position: inherit;
 		width: unset;
 		margin-left: unset;
-		margin-top: unset;
 	}
 
 	.productInfo > h2 {
-		margin-top: unset;
 		margin-bottom: 0.8rem;
 	}
 
@@ -84,8 +84,6 @@
 
 	.backNav {
 		left: 1rem;
-		margin-top: unset;
-		margin: 1rem 0;
 	}
 
 	/* .topNav > * {
