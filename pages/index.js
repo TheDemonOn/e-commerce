@@ -422,8 +422,6 @@ export default function Home({ initialProducts }) {
 					<h3>This is where new deals would go!</h3>
 				</div>
 			</header>
-			{/* Content banner */}
-			<div className={styles.banner}></div>
 			<header className={styles.wallHeader}>
 				<h2>
 					{currentProductType} ({products.length})
@@ -507,7 +505,7 @@ export default function Home({ initialProducts }) {
 						>
 							Close
 						</button>
-						<h1>Filters</h1>
+						<h1 className={styles.mobileTitle}>Filters</h1>
 						<fieldset id="mobileCategories">
 							<legend>Filter By Category</legend>
 							<div>
@@ -636,7 +634,7 @@ export default function Home({ initialProducts }) {
 									autoComplete="off"
 								></input>
 								<label htmlFor="mobileCustomRadio">Custom</label>
-								<div>
+								<div className={styles.customMobileInput}>
 									<input
 										id="mobileLowInput"
 										type="text"
@@ -685,7 +683,7 @@ export default function Home({ initialProducts }) {
 						<button onClick={electronicsProducts}>Electronics</button>
 					</div>
 
-					<fieldset onChange={handlePriceSelection}>
+					<fieldset className={styles.sideNavPrice} onChange={handlePriceSelection}>
 						<legend>Price ($)</legend>
 						<div>
 							<input
@@ -730,7 +728,7 @@ export default function Home({ initialProducts }) {
 						<div>
 							<input type="radio" id="customRadio" name="price" autoComplete="off"></input>
 							<label htmlFor="customRadio">Custom</label>
-							<div>
+							<div className={styles.customInput}>
 								<input
 									id="lowInput"
 									type="text"
@@ -740,6 +738,7 @@ export default function Home({ initialProducts }) {
 									onInput={customSelect}
 									onKeyDown={priceSelectionKeyboard}
 									autoComplete="off"
+									aria-label="Custom low input"
 								></input>
 								<p>to</p>
 								<input
@@ -751,6 +750,7 @@ export default function Home({ initialProducts }) {
 									onInput={customSelect}
 									onKeyDown={priceSelectionKeyboard}
 									autoComplete="off"
+									aria-label="Custom high input"
 								></input>
 								{/* Hidden button which enters in the current custom values */}
 							</div>

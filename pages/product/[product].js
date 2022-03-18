@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Product.module.css'
+import Link from 'next/link'
 
 export async function getStaticPaths() {
 	// This is the server executed function that will be used to prerender each page.
@@ -50,12 +51,38 @@ export default function Product({ product }) {
 		}
 	}, [])
 
+	const pageBack = () => {
+		history.go(-1)
+	}
+
 	return (
 		<>
 			<Head>
 				<title>{headTitle}</title>
 				<meta name="description" content="Fake e-commerce site" />
 			</Head>
+
+			<header>
+				<nav className={styles.topNav}>
+					<p>If</p>
+					<p>there</p>
+					<p>was</p>
+					<p>more</p>
+					<p>these</p>
+					<p>would</p>
+					<p>lead</p>
+					<p>there</p>
+				</nav>
+				<div className={styles.banner}>
+					<h3>This is where new deals would go!</h3>
+				</div>
+			</header>
+
+			<nav className={styles.backNav}>
+				<Link href="/">
+					<button>Back to results</button>
+				</Link>
+			</nav>
 
 			<main className={styles.center}>
 				<div className={styles.productDisplay}>

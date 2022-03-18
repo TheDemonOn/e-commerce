@@ -30,7 +30,7 @@ input[type='radio']:checked {
 }
 
 header {
-	height: 4rem;
+	/* height: 4rem; */
 	background-color: #fff;
 }
 
