@@ -51,9 +51,7 @@ export default function Product({ product }) {
 		}
 	}, [])
 
-	const pageBack = () => {
-		history.go(-1)
-	}
+	const [imagePosition, setImagePosition] = useState()
 
 	return (
 		<>
