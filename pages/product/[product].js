@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Product.module.css'
 import Link from 'next/link'
+import RatingDisplay from '../../components/RatingDisplay'
 
 export async function getStaticPaths() {
 	// This is the server executed function that will be used to prerender each page.
@@ -89,8 +90,12 @@ export default function Product({ product }) {
 					</div>
 					<div className={styles.productInfo}>
 						<h3>{product.title}</h3>
-						<h2>${product.price}</h2>
+						<h2 className={styles.price}>${product.price}</h2>
+
 						<button>Add to cart</button>
+						<div className={styles.stars}>
+							<RatingDisplay rating={product.rating.rate} />({product.rating.count})
+						</div>
 						<p>
 							<b>Description</b>
 						</p>

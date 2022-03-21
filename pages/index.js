@@ -400,6 +400,12 @@ export default function Home({ initialProducts }) {
 		}
 	}
 
+	const [productCount, setProductCount] = useState(products.length)
+
+	const updateProductCount = (count) => {
+		setProductCount(count)
+	}
+
 	return (
 		<>
 			<Head>
@@ -424,7 +430,7 @@ export default function Home({ initialProducts }) {
 			</header>
 			<header className={styles.wallHeader}>
 				<h2>
-					{currentProductType} ({products.length})
+					{currentProductType} ({productCount})
 				</h2>
 				{/* SideNav toggle & Sort By */}
 				<nav className={styles.sortNav}>
@@ -764,6 +770,7 @@ export default function Home({ initialProducts }) {
 						range={priceRange}
 						sort={selectedSort}
 						custom={customRange}
+						productDisplayCount={updateProductCount}
 					/>
 				</main>
 			</div>

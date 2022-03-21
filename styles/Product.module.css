@@ -49,6 +49,15 @@
 	margin: 1rem 1%;
 }
 
+.stars {
+	/* display: inline; */
+	margin-top: 1rem;
+}
+
+.price {
+	/* margin: 0; */
+}
+
 @media (max-width: 800px) {
 	.productDisplay {
 		display: flex;
