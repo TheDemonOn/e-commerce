@@ -45,14 +45,22 @@ export default function Product({ product }) {
 		// Essentially this will only allow the product title up to 9 words or less be included in the title in its product page.
 		if (product.title.match(regex)) {
 			// The title is equal to or longer than 9 words.
-			setHeadTitle(product.title.match(regex)[0] + "| Antonio's Store!")
+			setHeadTitle(product.title.match(regex)[0] + '| Shop Antonio')
 		} else {
 			// The title is less than 9 words.
-			setHeadTitle(product.title + " | Antonio's Store!")
+			setHeadTitle(product.title + ' | Shop Antonio')
 		}
 	}, [])
 
 	const [imagePosition, setImagePosition] = useState()
+
+	const svgStyle = {
+		fill: 'none',
+		stroke: '#6D6D6D',
+		strokeLinecap: 'round',
+		strokeLinejoin: 'round',
+		strokeWidth: '33px',
+	}
 
 	return (
 		<>
@@ -79,7 +87,18 @@ export default function Product({ product }) {
 
 			<nav className={styles.backNav}>
 				<Link href="/">
-					<a>Back to results</a>
+					<a>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 175.86 152.15"
+							width="13px"
+							className={styles.svgArrow}
+						>
+							<line x1="22.41" y1="76.07" x2="158.05" y2="76.07" style={svgStyle} />
+							<polyline points="75.64 18.26 17.81 76.1 75.59 133.88" style={svgStyle} />
+						</svg>
+						<span>Back to results</span>
+					</a>
 				</Link>
 			</nav>
 
