@@ -161,7 +161,6 @@ export default function Home({ initialProducts }) {
 	}
 
 	const handlePriceSelection = (e) => {
-		console.log(e)
 		if (e.target.type === 'radio') {
 			// Mutate state for displaying products
 			if (e.target.id !== 'customRadio') {
@@ -207,13 +206,16 @@ export default function Home({ initialProducts }) {
 		document.getElementById('customRadio').checked = true
 	}
 	const resetPrice = () => {
+		setPriceRange('anyPrice')
 		document.getElementById('anyPrice').checked = true
 		document.getElementById('lowInput').value = ''
 		document.getElementById('highInput').value = ''
 	}
 
 	const allProducts = () => {
-		setProducts([...initialProducts])
+		let newArray = [...initialProducts]
+		// console.log(newArray)
+		setProducts([...newArray])
 		setCurrentProductType('All Products')
 		resetPrice()
 	}
@@ -389,7 +391,6 @@ export default function Home({ initialProducts }) {
 	}
 
 	const handleMobilePrice = (e) => {
-		console.log(e)
 		if (
 			e.target.id !== 'mobileCustomRadio' &&
 			e.target.id !== 'mobileLowInput' &&
@@ -574,7 +575,7 @@ export default function Home({ initialProducts }) {
 						<fieldset
 							id="mobilePrices"
 							className={styles.noBottomBorder}
-							onChange={handleMobilePrice}
+							onInput={handleMobilePrice}
 						>
 							<legend>Price ($)</legend>
 							<div>
@@ -689,7 +690,7 @@ export default function Home({ initialProducts }) {
 						<button onClick={electronicsProducts}>Electronics</button>
 					</div>
 
-					<fieldset className={styles.sideNavPrice} onChange={handlePriceSelection}>
+					<fieldset className={styles.sideNavPrice} onInput={handlePriceSelection}>
 						<legend>Price ($)</legend>
 						<div>
 							<input

@@ -40,11 +40,9 @@ export default function ItemDisplay({ products, range, sort, custom, productDisp
 			case 'overFiveHundred':
 				setProduct(tempItems.filter((item) => item.price > 500))
 				break
-
 			case 'customRadio':
 				setProduct(tempItems.filter((item) => item.price >= custom[0] && item.price <= custom[1]))
 				break
-
 			default:
 				setProduct(products)
 				break
