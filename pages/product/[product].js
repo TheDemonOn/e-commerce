@@ -79,7 +79,7 @@ export default function Product({ product }) {
 
 			<nav className={styles.backNav}>
 				<Link href="/">
-					<button>Back to results</button>
+					<a>Back to results</a>
 				</Link>
 			</nav>
 
