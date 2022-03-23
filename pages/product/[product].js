@@ -66,7 +66,6 @@ export default function Product({ product }) {
 		<>
 			<Head>
 				<title>{headTitle}</title>
-				<meta name="description" content="Fake e-commerce site" />
 			</Head>
 
 			<header>
