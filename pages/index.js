@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 import ItemDisplay from '../components/ItemDisplay'
+import GithubSVG from '../components/GithubSVG'
 
 export default function Home({ initialProducts }) {
 	const [priceRange, setPriceRange] = useState('anyPrice')
@@ -410,14 +411,18 @@ export default function Home({ initialProducts }) {
 	return (
 		<>
 			<Head>
-				<title>Antonio's Store: It's amazing!</title>
-				<meta name="description" content="Fake e-commerce site" />
+				<title>Shop Antonio: It's amazing!</title>
 			</Head>
 
 			<header>
 				<a href="#main-content" id="navSkip">
 					Skip Navigation
 				</a>
+				<span className={styles.logo}>
+					<span>Shop </span>
+					<span className={styles.logoAccent}>A</span>
+					<span>ntonio</span>
+				</span>
 				<nav className={styles.topNav}>
 					<button onClick={allProducts}>All</button>
 					<button onClick={menProducts}>Men</button>
@@ -425,6 +430,7 @@ export default function Home({ initialProducts }) {
 					<button onClick={jeweleryProducts}>Jewelry</button>
 					<button onClick={electronicsProducts}>Electronics</button>
 				</nav>
+				<GithubSVG iconTheme="#739175" />
 				<div className={styles.banner}>
 					<h3>This is where new deals would go!</h3>
 				</div>
@@ -682,6 +688,7 @@ export default function Home({ initialProducts }) {
 				{/* Side Nav for filtering results */}
 				<nav className={styles.sideNav}>
 					<div className={styles.catagories}>
+						<h3 className={styles.legend}>Shop</h3>
 						{/* Catagories */}
 						<button onClick={allProducts}>All</button>
 						<button onClick={menProducts}>Men</button>
