@@ -6,16 +6,15 @@ export default function Chevron({ status }) {
 	useEffect(() => {
 		if (status === 'true') {
 			setDynamicClass('sortByOpen')
-			clearTimeout(
-				setTimeout(() => {
-					setDynamicClass('sortByClosed')
-				}, 200)
-			)
 		} else {
 			setDynamicClass('sortByClosing')
-			setTimeout(() => {
+			// This timout below is stored in a variable so that if the button's state changes before the 200ms, it will be cancelled to avoid inconsistent state
+			let closedTimeout = setTimeout(() => {
 				setDynamicClass('sortByClosed')
 			}, 200)
+		}
+		return () => {
+			clearTimeout(closedTimeout)
 		}
 	}, [status])
 
