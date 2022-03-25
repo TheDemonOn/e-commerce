@@ -247,6 +247,7 @@
 }
 
 .mobileTitle {
+	color: #5d7761;
 	margin-left: 1rem;
 }
 
@@ -312,4 +313,8 @@
 	min-width: 4.5rem;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.color {
+	color: #5d7761;
 }

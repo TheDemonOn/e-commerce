@@ -437,7 +437,7 @@ export default function Home({ initialProducts }) {
 				</div>
 			</header>
 			<header className={styles.wallHeader}>
-				<h2>
+				<h2 className={styles.color}>
 					{currentProductType} ({productCount})
 				</h2>
 				{/* SideNav toggle & Sort By */}
