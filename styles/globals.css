@@ -82,6 +82,14 @@ legend {
 	right: 1rem;
 }
 
+.github:hover path {
+	fill: #485c4b;
+}
+
+.github path {
+	fill: #739175;
+}
+
 .sortByOpen {
 	transform: rotate(180deg);
 	transition: transform 0.2s;

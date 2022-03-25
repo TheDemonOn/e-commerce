@@ -72,7 +72,7 @@ export default function Product({ product }) {
 
 			<header>
 				<ShopAntonio />
-				<GithubSVG iconTheme="#739175" />
+				<GithubSVG />
 				<nav className={styles.topNav}>
 					<p>If</p>
 					<p>there</p>

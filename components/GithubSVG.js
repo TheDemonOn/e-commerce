@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function GithubSVG({ iconTheme }) {
+export default function GithubSVG() {
 	return (
 		<a href="https://github.com/TheDemonOn/e-commerce" aria-label="Github">
 			<svg
@@ -17,7 +17,6 @@ export default function GithubSVG({ iconTheme }) {
 				aria-hidden="true"
 			>
 				<path
-					fill={iconTheme}
 					d="M0,231.61c1.43-9.51,2.54-19.09,4.36-28.52C15.66,144.5,44.14,95.83,89.85,57.55c36.3-30.39,78-49.59,125.06-55.57
 	c63.96-8.12,123.41,4.64,176.75,41.78c54.94,38.25,89.92,90.35,103,155.89c13.17,65.97,2.09,128.14-34.68,185.18
 	c-31.12,48.27-73.65,82-127.86,100.92c-13.13,4.58-20.09-0.62-20.12-14.51c0-1.9,0-3.79,0-5.69c-0.03-21.06,0.49-42.14-0.34-63.17

@@ -428,7 +428,7 @@ export default function Home({ initialProducts }) {
 					<button onClick={jeweleryProducts}>Jewelry</button>
 					<button onClick={electronicsProducts}>Electronics</button>
 				</nav>
-				<GithubSVG iconTheme="#739175" />
+				<GithubSVG />
 				<div className={styles.banner}>
 					<h3>This is where new deals would go!</h3>
 				</div>
