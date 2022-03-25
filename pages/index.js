@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 
 import ItemDisplay from '../components/ItemDisplay'
 import GithubSVG from '../components/GithubSVG'
+import Chevron from '../components/Chevron'
 
 export default function Home({ initialProducts }) {
 	const [priceRange, setPriceRange] = useState('anyPrice')
@@ -454,10 +455,12 @@ export default function Home({ initialProducts }) {
 						aria-controls="sortOptions"
 						aria-haspopup="listbox"
 					>
-						<span>Sort By</span>
-						<div>{/* Chevron */}</div>
+						<div className={styles.sortByButton + ' noselect'}>
+							<span>Sort By</span>
+							<Chevron status={sortDropStatus} />
+						</div>
 					</button>
-					<div id="sortOptions" role="listbox" className={sortDropDownClass}>
+					<div id="sortOptions" role="listbox" className={sortDropDownClass + ' noselect'}>
 						{/* Drop Down */}
 						<button
 							id="sortFeatured"

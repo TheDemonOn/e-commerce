@@ -82,6 +82,24 @@ legend {
 	right: 1rem;
 }
 
+.sortByOpen {
+	transform: rotate(180deg);
+	transition: transform 0.2s;
+}
+
+.sortByClosing {
+	transform: rotate(360deg);
+	transition: transform 0.2s;
+}
+
+.sortByClosed {
+	transform: rotate(0deg);
+}
+
+.noselect {
+	user-select: none;
+}
+
 #navSkip {
 	position: absolute;
 	padding: 0.6em;

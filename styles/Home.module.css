@@ -306,3 +306,10 @@
 	margin-bottom: 0.2rem;
 	color: #5d7761;
 }
+
+.sortByButton {
+	display: flex;
+	min-width: 4.5rem;
+	align-items: center;
+	justify-content: space-between;
+}
