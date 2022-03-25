@@ -54,14 +54,17 @@ export default function Product({ product }) {
 		}
 	}, [])
 
-	const [imagePosition, setImagePosition] = useState()
-
 	const svgStyle = {
 		fill: 'none',
 		stroke: '#6D6D6D',
 		strokeLinecap: 'round',
 		strokeLinejoin: 'round',
 		strokeWidth: '33px',
+	}
+
+	const setLocalStorage = (data) => {
+		console.log(data.target.innerText)
+		localStorage.setItem('product', data.target.innerText)
 	}
 
 	return (
@@ -74,14 +77,21 @@ export default function Product({ product }) {
 				<ShopAntonio />
 				<GithubSVG />
 				<nav className={styles.topNav}>
-					<p>If</p>
-					<p>there</p>
-					<p>was</p>
-					<p>more</p>
-					<p>these</p>
-					<p>would</p>
-					<p>lead</p>
-					<p>there</p>
+					<a href="/" onClick={setLocalStorage}>
+						All
+					</a>
+					<a href="/" onClick={setLocalStorage}>
+						Men
+					</a>
+					<a href="/" onClick={setLocalStorage}>
+						Women
+					</a>
+					<a href="/" onClick={setLocalStorage}>
+						Jewelry
+					</a>
+					<a href="/" onClick={setLocalStorage}>
+						Electronics
+					</a>
 				</nav>
 				<div className={styles.banner}>
 					<h3>This is where new deals would go!</h3>

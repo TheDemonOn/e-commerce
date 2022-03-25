@@ -56,6 +56,10 @@
 	border-bottom: 1px solid rgba(34, 34, 34, 0.15);
 }
 
+.topNav a:hover {
+	text-decoration: underline;
+}
+
 @media (max-width: 950px) {
 	.topNav {
 		border-top: 1px solid rgba(34, 34, 34, 0.15);
@@ -63,7 +67,7 @@
 }
 
 .topNav > * {
-	margin: 1rem 1%;
+	margin: 1rem 1.05%;
 }
 
 .stars {

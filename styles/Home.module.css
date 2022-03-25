@@ -33,6 +33,14 @@
 	padding-left: 1rem;
 }
 
+.unloaded {
+	display: none;
+}
+
+.invisible {
+	visibility: none;
+}
+
 .main {
 	display: flex;
 	flex-wrap: wrap;
@@ -281,6 +289,19 @@
 	justify-content: space-between;
 }
 
-.color {
+.productNameDisplay {
 	color: #5d7761;
+}
+
+.topNav button:hover {
+	text-decoration: underline;
+}
+
+.catagories button {
+	transition: transform 0.2s;
+}
+
+.catagories button:hover {
+	transform: translateX(1%);
+	transition: transform 0.2s;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -410,6 +410,52 @@ export default function Home({ initialProducts }) {
 		setProductCount(count)
 	}
 
+	// Initial Load
+
+	useLayoutEffect(() => {
+		// This effect occurs to ensure the correct products displays before displaying
+		let potentialProduct = localStorage.getItem('product')
+		if (potentialProduct) {
+			switch (potentialProduct) {
+				case 'All':
+					allProducts()
+					break
+				case 'Men':
+					menProducts()
+					break
+				case 'Women':
+					womenProducts()
+					break
+				case 'Jewelry':
+					jeweleryProducts()
+					break
+				case 'Electronics':
+					electronicsProducts()
+					break
+				default:
+					break
+			}
+		}
+		// This setTimeout seems to prevent what is probably a caching issue, as occasionally the content will not be updated before loading
+		setTimeout(() => {
+			setInitialLoad(1)
+		}, 1)
+		localStorage.removeItem('product')
+	}, [])
+
+	const [initialLoad, setInitialLoad] = useState(0)
+	// The main is set to not display until the correct items appear
+	const [mainClass, setMainClass] = useState(styles.unloaded)
+	// This one however is set to invisible to prevent Cumulative Layout Shift (CLS)
+	const [productNameClass, setProductNameClass] = useState(styles.invisible)
+
+	useEffect(() => {
+		if (initialLoad) {
+			setMainClass(styles.main)
+			setProductNameClass(styles.productNameDisplay)
+		}
+	}, [initialLoad])
+
 	return (
 		<>
 			<Head>
@@ -434,7 +480,7 @@ export default function Home({ initialProducts }) {
 				</div>
 			</header>
 			<header className={styles.wallHeader}>
-				<h2 className={styles.color}>
+				<h2 className={productNameClass}>
 					{currentProductType} ({productCount})
 				</h2>
 				{/* SideNav toggle & Sort By */}
@@ -772,7 +818,7 @@ export default function Home({ initialProducts }) {
 					</fieldset>
 				</nav>
 
-				<main className={styles.main} id="main-content">
+				<main className={mainClass} id="main-content">
 					<ItemDisplay
 						products={products}
 						range={priceRange}
