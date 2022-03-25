@@ -4,6 +4,8 @@ import Image from 'next/image'
 import styles from '../../styles/Product.module.css'
 import Link from 'next/link'
 import RatingDisplay from '../../components/RatingDisplay'
+import ShopAntonio from '../../components/ShopAntonio'
+import GithubSVG from '../../components/GithubSVG'
 
 export async function getStaticPaths() {
 	// This is the server executed function that will be used to prerender each page.
@@ -69,6 +71,8 @@ export default function Product({ product }) {
 			</Head>
 
 			<header>
+				<ShopAntonio />
+				<GithubSVG iconTheme="#739175" />
 				<nav className={styles.topNav}>
 					<p>If</p>
 					<p>there</p>

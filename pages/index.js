@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css'
 import ItemDisplay from '../components/ItemDisplay'
 import GithubSVG from '../components/GithubSVG'
 import Chevron from '../components/Chevron'
+import ShopAntonio from '../components/ShopAntonio'
 
 export default function Home({ initialProducts }) {
 	const [priceRange, setPriceRange] = useState('anyPrice')
@@ -419,11 +420,7 @@ export default function Home({ initialProducts }) {
 				<a href="#main-content" id="navSkip">
 					Skip Navigation
 				</a>
-				<span className={styles.logo}>
-					<span>Shop </span>
-					<span className={styles.logoAccent}>A</span>
-					<span>ntonio</span>
-				</span>
+				<ShopAntonio />
 				<nav className={styles.topNav}>
 					<button onClick={allProducts}>All</button>
 					<button onClick={menProducts}>Men</button>

@@ -100,6 +100,46 @@ legend {
 	user-select: none;
 }
 
+.logo {
+	display: inline;
+	position: absolute;
+	font-family: Begika;
+	font-size: 2.4rem;
+	color: #739175;
+	top: 0.35rem;
+	left: 1rem;
+}
+
+.logoAccent {
+	font-feature-settings: 'aalt';
+}
+
+@media (max-width: 1100px) {
+	.logo {
+		font-size: 2rem;
+		top: 0.55rem;
+		left: 1rem;
+	}
+}
+
+@media (max-width: 950px) {
+	.logo {
+		display: block;
+		position: relative;
+		font-family: Begika;
+		font-size: 2rem;
+		color: #739175;
+		top: unset;
+		left: unset;
+		/* margin-bottom: 0.9rem; */
+		margin-left: 1rem;
+		margin-top: 0.55rem;
+		padding-bottom: 0.35rem;
+
+		/* border-bottom: 1px solid rgba(34, 34, 34, 0.15); */
+	}
+}
+
 #navSkip {
 	position: absolute;
 	padding: 0.6em;
