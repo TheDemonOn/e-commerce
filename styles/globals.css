@@ -70,6 +70,10 @@ legend {
 	color: #5d7761;
 }
 
+header h2 {
+	color: #5d7761;
+}
+
 .stopScroll {
 	margin: 0;
 	height: 100%;
@@ -91,7 +95,7 @@ legend {
 }
 
 .sortByOpen {
-	transform: rotate(180deg);
+	transform: rotate(180deg) translateY(-15%);
 	transition: transform 0.2s;
 }
 
@@ -102,6 +106,9 @@ legend {
 
 .sortByClosed {
 	transform: rotate(0deg);
+}
+
+.sortByInitialClosed {
 }
 
 .noselect {
@@ -190,6 +197,28 @@ legend {
 	width: 100%;
 	z-index: 1;
 	background: black;
+}
+
+#sortOptions {
+	position: absolute;
+	background-color: #e6efe6;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 10rem;
+	min-width: 10rem;
+}
+
+#sortOptions button {
+	padding: 0.5rem 1rem;
+}
+
+#sortOptions button:hover {
+	background-color: #cddfcd;
+}
+
+#sortHighestPrice {
+	padding-bottom: 0.8rem !important;
 }
 
 @media (max-width: 950px) {

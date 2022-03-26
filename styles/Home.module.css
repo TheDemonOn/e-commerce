@@ -11,19 +11,13 @@
 }
 
 .sideNav {
-	/* border: solid; */
 	position: -webkit-sticky;
 	position: sticky;
-	top: 4rem;
 	width: 260px;
-	/* background-color: bisque; */
-	flex-shrink: 0;
 	padding-left: 2rem;
-	margin-top: 2rem;
 }
 
 .wallHeader {
-	/* border: solid; */
 	position: -webkit-sticky;
 	position: sticky;
 	display: flex;
@@ -88,12 +82,52 @@
 }
 
 .dropdownOpen {
-	position: absolute;
-	border: solid;
+	animation-name: openingDropdown;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes openingDropdown {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0%);
+	}
 }
 
 .dropdownClosed {
-	display: none;
+	visibility: hidden;
+
+	animation-name: closingDropdown;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes closingDropdown {
+	from {
+		transform: translateY(0%);
+		visibility: visible;
+	}
+	to {
+		transform: translateY(-100%);
+		visibility: hidden;
+	}
+}
+
+.dropdownInitial {
+	visibility: hidden;
+}
+
+.sortContainer {
+	position: absolute;
+	min-height: 10rem;
+	min-width: 10rem;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	top: 2rem;
+	right: -1rem;
 }
 
 .banner {
@@ -287,10 +321,6 @@
 	min-width: 4.5rem;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.productNameDisplay {
-	color: #5d7761;
 }
 
 .topNav button:hover {

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 
 export default function Chevron({ status }) {
-	const [dynamicClass, setDynamicClass] = useState('sortByClosed')
+	const [dynamicClass, setDynamicClass] = useState()
 
 	useEffect(() => {
 		if (status === 'true') {
 			setDynamicClass('sortByOpen')
 		} else {
-			setDynamicClass('sortByClosing')
-			// This timout below is stored in a variable so that if the button's state changes before the 200ms, it will be cancelled to avoid inconsistent state
-			let closedTimeout = setTimeout(() => {
-				setDynamicClass('sortByClosed')
-			}, 200)
+			if (dynamicClass) {
+				// The initial check of "dynamicClass" is to prevent the closed class from being applied and playing its animation on first load.
+				setDynamicClass('sortByClosing')
+				// This timout below is stored in a variable so that if the button's state changes before the 200ms, it will be cancelled to avoid inconsistent state
+				let closedTimeout = setTimeout(() => {
+					setDynamicClass('sortByClosed')
+				}, 200)
+			}
 		}
 		return () => {
 			clearTimeout(closedTimeout)

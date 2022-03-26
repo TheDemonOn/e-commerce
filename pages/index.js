@@ -14,7 +14,7 @@ export default function Home({ initialProducts }) {
 	const [products, setProducts] = useState(initialProducts)
 	const [currentProductType, setCurrentProductType] = useState('All Products')
 
-	const [sortDropDownClass, setSortDropDownClass] = useState(styles.dropdownClosed)
+	const [sortDropDownClass, setSortDropDownClass] = useState(styles.dropdownInitial)
 
 	// The selectedSort will default to sortFeatured, unless there is a current value for sortOption in localStorage.
 	// This takes place within the ItemDisplay Component.
@@ -60,7 +60,11 @@ export default function Home({ initialProducts }) {
 
 	const handleDropdownClose = (e) => {
 		let menu = document.getElementById('sortOptions')
-		if (typeof menu !== 'undefined' && menu !== null) {
+		if (
+			typeof menu !== 'undefined' &&
+			menu !== null &&
+			window.getComputedStyle(menu).visibility === 'visible'
+		) {
 			// If the sort menu is currently open
 			if (!menu.contains(e.target)) {
 				// if the area clicked is not within the menu, close it
@@ -452,7 +456,7 @@ export default function Home({ initialProducts }) {
 	useEffect(() => {
 		if (initialLoad) {
 			setMainClass(styles.main)
-			setProductNameClass(styles.productNameDisplay)
+			setProductNameClass()
 		}
 	}, [initialLoad])
 
@@ -503,44 +507,47 @@ export default function Home({ initialProducts }) {
 							<Chevron status={sortDropStatus} />
 						</div>
 					</button>
-					<div id="sortOptions" role="listbox" className={sortDropDownClass + ' noselect'}>
-						{/* Drop Down */}
-						<button
-							id="sortFeatured"
-							onClick={sortDropSelect}
-							onKeyDown={sortDropKeyboardControls}
-							role="menuitem"
-							aria-checked={sortDropChecks[0]}
-						>
-							Featured
-						</button>
-						<button
-							id="sortTopReview"
-							onClick={sortDropSelect}
-							onKeyDown={sortDropKeyboardControls}
-							role="menuitem"
-							aria-checked={sortDropChecks[1]}
-						>
-							Top Reviews
-						</button>
-						<button
-							id="sortLowestPrice"
-							onClick={sortDropSelect}
-							onKeyDown={sortDropKeyboardControls}
-							role="menuitem"
-							aria-checked={sortDropChecks[2]}
-						>
-							Lowest Price
-						</button>
-						<button
-							id="sortHighestPrice"
-							onClick={sortDropSelect}
-							onKeyDown={sortDropKeyboardControls}
-							role="menuitem"
-							aria-checked={sortDropChecks[3]}
-						>
-							Highest Price
-						</button>
+					{/* This div will define the area the listbox will enter to display */}
+					<div id="sortOptionsContainer" className={styles.sortContainer}>
+						<div id="sortOptions" role="listbox" className={sortDropDownClass + ' noselect'}>
+							{/* Drop Down */}
+							<button
+								id="sortFeatured"
+								onClick={sortDropSelect}
+								onKeyDown={sortDropKeyboardControls}
+								role="menuitem"
+								aria-checked={sortDropChecks[0]}
+							>
+								Featured
+							</button>
+							<button
+								id="sortTopReview"
+								onClick={sortDropSelect}
+								onKeyDown={sortDropKeyboardControls}
+								role="menuitem"
+								aria-checked={sortDropChecks[1]}
+							>
+								Top Reviews
+							</button>
+							<button
+								id="sortLowestPrice"
+								onClick={sortDropSelect}
+								onKeyDown={sortDropKeyboardControls}
+								role="menuitem"
+								aria-checked={sortDropChecks[2]}
+							>
+								Lowest Price
+							</button>
+							<button
+								id="sortHighestPrice"
+								onClick={sortDropSelect}
+								onKeyDown={sortDropKeyboardControls}
+								role="menuitem"
+								aria-checked={sortDropChecks[3]}
+							>
+								Highest Price
+							</button>
+						</div>
 					</div>
 					{/* Reduced Screen Width Filter Button */}
 					<button
