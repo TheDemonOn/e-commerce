@@ -8,7 +8,6 @@ export default function Checkmark({ active = 'false' }) {
 				height="1.2rem"
 				className="checkmark"
 				version="1.1"
-				// viewBox="0 0 700 700"
 				viewBox="100 100 500 400"
 				xmlns="http://www.w3.org/2000/svg"
 				xmlnsXlink="http://www.w3.org/1999/xlink"

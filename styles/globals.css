@@ -114,6 +114,12 @@ header h2 {
 	margin-top: 0.1rem;
 }
 
+.filter {
+	position: absolute;
+	top: 0.25rem;
+	right: 3rem;
+}
+
 .noselect {
 	user-select: none;
 }

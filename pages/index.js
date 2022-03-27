@@ -8,6 +8,8 @@ import GithubSVG from '../components/GithubSVG'
 import Chevron from '../components/Chevron'
 import ShopAntonio from '../components/ShopAntonio'
 import Checkmark from '../components/Checkmark'
+import Filter from '../components/Filter'
+import ExitIcon from '../components/ExitIcon'
 
 export default function Home({ initialProducts }) {
 	const [priceRange, setPriceRange] = useState('anyPrice')
@@ -576,8 +578,8 @@ export default function Home({ initialProducts }) {
 						aria-controls="fullscreenFilter"
 						aria-expanded={fullscreenFilterStatus}
 					>
+						<Filter />
 						<span>Filters</span>
-						<div>{/* Icon */}</div>
 					</button>
 
 					<div id="fullscreenFilter" className={fullFilterClass} role="menu">
@@ -586,10 +588,12 @@ export default function Home({ initialProducts }) {
 							id="closeFullscreenFilter"
 							className={styles.fullscreenClose}
 							onClick={filterToggle}
+							aria-label="Close"
 						>
-							Close
+							<ExitIcon />
 						</button>
 						<h1 className={styles.mobileTitle}>Filters</h1>
+
 						<fieldset id="mobileCategories">
 							<legend>Filter By Category</legend>
 							<div>
