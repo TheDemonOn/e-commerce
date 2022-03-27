@@ -108,7 +108,10 @@ header h2 {
 	transform: rotate(0deg);
 }
 
-.sortByInitialClosed {
+.checkmark {
+	position: absolute;
+	right: 0.7rem;
+	margin-top: 0.1rem;
 }
 
 .noselect {
@@ -127,6 +130,10 @@ header h2 {
 
 .logoAccent {
 	font-feature-settings: 'aalt';
+}
+
+.noVisibility {
+	visibility: hidden;
 }
 
 @media (max-width: 1100px) {
@@ -218,7 +225,7 @@ header h2 {
 }
 
 #sortHighestPrice {
-	padding-bottom: 0.8rem !important;
+	padding-bottom: 0.7rem !important;
 }
 
 @media (max-width: 950px) {

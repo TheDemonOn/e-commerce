@@ -7,6 +7,7 @@ import ItemDisplay from '../components/ItemDisplay'
 import GithubSVG from '../components/GithubSVG'
 import Chevron from '../components/Chevron'
 import ShopAntonio from '../components/ShopAntonio'
+import Checkmark from '../components/Checkmark'
 
 export default function Home({ initialProducts }) {
 	const [priceRange, setPriceRange] = useState('anyPrice')
@@ -460,6 +461,16 @@ export default function Home({ initialProducts }) {
 		}
 	}, [initialLoad])
 
+	const [dropdownContainerClass, setDropdownContainerClass] = useState()
+
+	useEffect(() => {
+		if (sortDropStatus === 'false') {
+			setDropdownContainerClass('noVisibility')
+		} else {
+			setDropdownContainerClass('')
+		}
+	}, [sortDropStatus])
+
 	return (
 		<>
 			<Head>
@@ -508,7 +519,10 @@ export default function Home({ initialProducts }) {
 						</div>
 					</button>
 					{/* This div will define the area the listbox will enter to display */}
-					<div id="sortOptionsContainer" className={styles.sortContainer}>
+					<div
+						id="sortOptionsContainer"
+						className={styles.sortContainer + ' ' + dropdownContainerClass}
+					>
 						<div id="sortOptions" role="listbox" className={sortDropDownClass + ' noselect'}>
 							{/* Drop Down */}
 							<button
@@ -519,6 +533,7 @@ export default function Home({ initialProducts }) {
 								aria-checked={sortDropChecks[0]}
 							>
 								Featured
+								<Checkmark active={sortDropChecks[0]}></Checkmark>
 							</button>
 							<button
 								id="sortTopReview"
@@ -528,6 +543,7 @@ export default function Home({ initialProducts }) {
 								aria-checked={sortDropChecks[1]}
 							>
 								Top Reviews
+								<Checkmark active={sortDropChecks[1]}></Checkmark>
 							</button>
 							<button
 								id="sortLowestPrice"
@@ -537,6 +553,7 @@ export default function Home({ initialProducts }) {
 								aria-checked={sortDropChecks[2]}
 							>
 								Lowest Price
+								<Checkmark active={sortDropChecks[2]}></Checkmark>
 							</button>
 							<button
 								id="sortHighestPrice"
@@ -546,6 +563,7 @@ export default function Home({ initialProducts }) {
 								aria-checked={sortDropChecks[3]}
 							>
 								Highest Price
+								<Checkmark active={sortDropChecks[3]}></Checkmark>
 							</button>
 						</div>
 					</div>
