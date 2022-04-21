@@ -23,8 +23,8 @@ export default function Chevron({ status }) {
 
 	return (
 		<svg
-			width="0.9rem"
-			height="0.9rem"
+			width="0.9em"
+			height="0.9em"
 			className={dynamicClass}
 			version="1.1"
 			viewBox="200 200 300 100"

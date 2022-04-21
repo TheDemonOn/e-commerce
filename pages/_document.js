@@ -14,7 +14,6 @@ export default function Document() {
 					name="keywords"
 					content="e-commerce, fake, portfolio, front end development, Antonio"
 				/>
-				{/* <meta name="theme-color" content="#262538" /> */}
 				<meta name="language" content="English" />
 				<meta name="revised" content="March 22nd, 2022" />
 				<meta name="HandheldFriendly" content="true" />

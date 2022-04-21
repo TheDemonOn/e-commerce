@@ -4,8 +4,8 @@ export default function Checkmark({ active = 'false' }) {
 	if (active === 'true') {
 		return (
 			<svg
-				width="1.2rem"
-				height="1.2rem"
+				width="1.2em"
+				height="1.2em"
 				className="checkmark"
 				version="1.1"
 				viewBox="100 100 500 400"

@@ -5,8 +5,8 @@ export default function GithubSVG() {
 		<a href="https://github.com/TheDemonOn/e-commerce" aria-label="Github">
 			<svg
 				className="github"
-				width="2.3rem"
-				height="2.3rem"
+				width="2.3em"
+				height="2.3em"
 				version="1.1"
 				id="Layer_1"
 				xmlns="http://www.w3.org/2000/svg"

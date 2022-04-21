@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -92,7 +92,6 @@ export default function Home({ initialProducts }) {
 			let selectedOption = e.target.id
 			// The new selected option is passed to the child to display the items in the new order
 			setSelectedSort(selectedOption)
-			console.log('The selected Sort is now: ' + selectedOption)
 
 			let newSortDropChecks = ['false', 'false', 'false', 'false']
 			// Mutate sortDropChecks to reflect new checked for accessibility attribute
@@ -128,7 +127,6 @@ export default function Home({ initialProducts }) {
 		// If that is the case then the first way I had thought may be the solution.
 
 		// The way I have done it here could be generalized to not require manual focus
-		console.log(e)
 		switch (e.key) {
 			// Switched e.code to e.key for better handling of actions on laptops
 			case 'Escape':
@@ -205,7 +203,6 @@ export default function Home({ initialProducts }) {
 	const priceSelectionKeyboard = (e) => {
 		switch (e.code) {
 			case 'Enter':
-				console.log('ENTER WAS pressed')
 				// Click button
 				customEnter()
 				break
@@ -224,7 +221,6 @@ export default function Home({ initialProducts }) {
 
 	const allProducts = () => {
 		let newArray = [...initialProducts]
-		// console.log(newArray)
 		setProducts([...newArray])
 		setCurrentProductType('All Products')
 		resetPrice()
@@ -279,7 +275,7 @@ export default function Home({ initialProducts }) {
 			setDarkFilter(styles.openDark)
 			document.body.setAttribute('class', 'stopScroll')
 			setTimeout(() => {
-				// This waita 1ms before focusing to ensure the element is no longer display: none
+				// This waits 1ms before focusing to ensure the element is no longer display: none
 				document.getElementById('closeFullscreenFilter').focus()
 			}, 1)
 		} else {

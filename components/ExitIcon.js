@@ -3,8 +3,8 @@ import React from 'react'
 export default function ExitIcon() {
 	return (
 		<svg
-			width="1.3rem"
-			height="1.3rem"
+			width="1.3em"
+			height="1.3em"
 			className="ExitIcon"
 			version="1.1"
 			viewBox="0 0 800 600"
