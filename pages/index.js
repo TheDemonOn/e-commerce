@@ -83,7 +83,7 @@ export default function Home({ initialProducts }) {
 			window.removeEventListener('click', handleDropdownClose)
 			// window.removeEventListener('focusin', handleDropdownClose)
 		}
-	}, [])
+	}, [handleDropdownClose])
 
 	const sortDropSelect = (e) => {
 		// This statement allows clicks, Enter, and Space to execute
@@ -444,7 +444,7 @@ export default function Home({ initialProducts }) {
 			setInitialLoad(1)
 		}, 1)
 		localStorage.removeItem('product')
-	}, [])
+	}, [allProducts, menProducts, womenProducts, jeweleryProducts, electronicsProducts])
 
 	const [initialLoad, setInitialLoad] = useState(0)
 	// The main is set to not display until the correct items appear
@@ -527,7 +527,7 @@ export default function Home({ initialProducts }) {
 								id="sortFeatured"
 								onClick={sortDropSelect}
 								onKeyDown={sortDropKeyboardControls}
-								role="menuitem"
+								role="option"
 								aria-checked={sortDropChecks[0]}
 							>
 								Featured
@@ -537,7 +537,7 @@ export default function Home({ initialProducts }) {
 								id="sortTopReview"
 								onClick={sortDropSelect}
 								onKeyDown={sortDropKeyboardControls}
-								role="menuitem"
+								role="option"
 								aria-checked={sortDropChecks[1]}
 							>
 								Top Reviews
@@ -547,7 +547,7 @@ export default function Home({ initialProducts }) {
 								id="sortLowestPrice"
 								onClick={sortDropSelect}
 								onKeyDown={sortDropKeyboardControls}
-								role="menuitem"
+								role="option"
 								aria-checked={sortDropChecks[2]}
 							>
 								Lowest Price
@@ -557,7 +557,7 @@ export default function Home({ initialProducts }) {
 								id="sortHighestPrice"
 								onClick={sortDropSelect}
 								onKeyDown={sortDropKeyboardControls}
-								role="menuitem"
+								role="option"
 								aria-checked={sortDropChecks[3]}
 							>
 								Highest Price

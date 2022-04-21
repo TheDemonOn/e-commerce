@@ -15,7 +15,7 @@ export default function ItemDisplay({ products, range, sort, custom, productDisp
 	useEffect(() => {
 		// This will update the product count on the home
 		productDisplayCount(productDisplay.length)
-	}, [productDisplay])
+	}, [productDisplay, productDisplayCount])
 
 	useEffect(() => {
 		setProduct([...products])
@@ -119,7 +119,7 @@ export default function ItemDisplay({ products, range, sort, custom, productDisp
 					break
 			}
 		}
-	}, [product, sort])
+	}, [product, sort, sortTopReview, sortLowToHigh, sortHighToLow, sortFeatured])
 
 	if (productDisplay.length === 0) {
 		return <>Sorry no results.</>
@@ -138,6 +138,7 @@ export default function ItemDisplay({ products, range, sort, custom, productDisp
 										<Image
 											className={styles.ImgSize}
 											src={product.image}
+											alt={product.title}
 											layout="fill"
 											objectFit="contain"
 										></Image>

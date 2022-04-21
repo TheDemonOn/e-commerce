@@ -77,21 +77,21 @@ export default function Product({ product }) {
 				<ShopAntonio />
 				<GithubSVG />
 				<nav className={styles.topNav}>
-					<a href="/" onClick={setLocalStorage}>
-						All
-					</a>
-					<a href="/" onClick={setLocalStorage}>
-						Men
-					</a>
-					<a href="/" onClick={setLocalStorage}>
-						Women
-					</a>
-					<a href="/" onClick={setLocalStorage}>
-						Jewelry
-					</a>
-					<a href="/" onClick={setLocalStorage}>
-						Electronics
-					</a>
+					<Link href="/">
+						<a onClick={setLocalStorage}>All</a>
+					</Link>
+					<Link href="/">
+						<a onClick={setLocalStorage}>Men</a>
+					</Link>
+					<Link href="/">
+						<a onClick={setLocalStorage}>Women</a>
+					</Link>
+					<Link href="/">
+						<a onClick={setLocalStorage}>Jewelry</a>
+					</Link>
+					<Link href="/">
+						<a onClick={setLocalStorage}>Electronics</a>
+					</Link>
 				</nav>
 				<div className={styles.banner}>
 					<h3>This is where new deals would go!</h3>
@@ -118,7 +118,12 @@ export default function Product({ product }) {
 			<main className={styles.center}>
 				<div className={styles.productDisplay}>
 					<div className={styles.imgContainer}>
-						<Image src={product.image} layout="fill" objectFit="contain"></Image>
+						<Image
+							src={product.image}
+							alt={product.title}
+							layout="fill"
+							objectFit="contain"
+						></Image>
 					</div>
 					<div className={styles.productInfo}>
 						<h3>{product.title}</h3>

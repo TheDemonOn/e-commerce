@@ -6,7 +6,7 @@ export default function Document() {
 			<Head>
 				<meta name="description" content="Fake e-commerce site" />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 				<link href="https://fonts.googleapis.com/css2?family=Lato" rel="stylesheet" />
 
 				<meta name="author" content="Antonio Zamora" />
